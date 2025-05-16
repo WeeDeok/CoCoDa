@@ -9,4 +9,5 @@ public interface AttractMapper {
 	public ArrayList<HashMap<String,Object>> selectattraction(HashMap<String,Object> list);
 	
 	public ArrayList<HashMap<String,Object>> selectsubway(HashMap<String,Object> list);
+	
 }
