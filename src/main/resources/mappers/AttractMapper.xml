@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.project.cocoda.dao.AttractMapper">
+
+	<select id="selectattraction" parameterType="HashMap" resultType="HashMap">
+		<![CDATA[
+					SELECT 
+						GOVERNMENT,
+						BANK,
+						BHOSPITAL,
+						SHOSPITAL,
+						PHAR,
+						KINDER,
+						ELEMENTARY,
+						ELE_POP,
+						MIDDLE,
+						MID_POP,
+						HIGH,
+						HIGH_POP,
+						UNIVERSITY,
+						UNI_POP,
+						DEPARTMENT,
+						MARKET,
+						THEATER,
+						HOTEL,
+						TERMINAL
+					FROM 
+						ATTRACTION_TB
+					WHERE 
+						SIGUNGU_CD = #{sigungu_cd}
+						AND FIXED_DATE IN (
+							SELECT 
+								FIXED_DATE
+							FROM (
+								SELECT DISTINCT 
+									FIXED_DATE
+								FROM 
+									ATTRACTION_TB
+								ORDER BY 
+									FIXED_DATE DESC
+							)
+							WHERE 
+								ROWNUM < 5
+						);
+
+	]]>
+	</select>
+
+	<select id = "selectsubway" parameterType="HashMap" resultType="HashMap">
+
+		SELECT TO_CHAR(fixed_date, 'yyyy-mm') AS fixed_date,
+			sub_nm,
+			SUM(time1) AS time1,
+			SUM(time2) AS time2,
+			SUM(time3) AS time3,
+			SUM(time4) AS time4,
+			SUM(time5) AS time5,
+			SUM(time6) AS time6,
+			SUM(time7) AS time7
+		FROM subway_pop_tb
+		WHERE wgsx BETWEEN (#{wgsx} - 0.0025) AND (#{wgsx} + 0.0025)
+		AND wgsy BETWEEN (#{wgsy} - 0.0025) AND (#{wgsy} + 0.0025)
+		GROUP BY TO_CHAR(fixed_date, 'yyyy-mm'), sub_nm
+		ORDER BY fixed_date DESC;
+
+		
+	</select>
+
+</mapper>

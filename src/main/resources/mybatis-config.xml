@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	 <typeAliases>
+		<typeAlias alias="Selectkey" 	type="org.project.cocoda.vo.Selectkey"/>
+		<typeAlias alias="Selectincome" type="org.project.cocoda.vo.Selectincome"/>
+		<typeAlias alias="reply" type="org.project.cocoda.vo.reply"/>
+		<typeAlias alias="user" type="org.project.cocoda.vo.user"/>
+		<typeAlias alias="board" type="org.project.cocoda.vo.board"/>
+		
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/IndexMapper.xml"/>
+		<mapper resource="mappers/Danger.xml"/>
+		<mapper resource="mappers/AttractMapper.xml"/>
+		<mapper resource="mappers/OfferMapper.xml"/>
+		<mapper resource="mappers/PopMapper.xml"/>
+		<mapper resource="mappers/TotalMapper.xml"/>
+		<mapper resource="mappers/boardMapper.xml"/>
+		<mapper resource="mappers/userMapper.xml"/>
+		<mapper resource="mappers/qaboardMapper.xml"/>
+		<mapper resource="mappers/noticeboardMapper.xml"/>
+		
+	</mappers>
+</configuration>
+
