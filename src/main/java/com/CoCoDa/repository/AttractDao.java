@@ -1,4 +1,4 @@
-package org.cocoda.repository;
+package com.CoCoDa.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AttractDao {
-
 
 	@Autowired
 	SqlSession session;
