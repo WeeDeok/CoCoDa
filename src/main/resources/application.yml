@@ -11,5 +11,6 @@ spring:
 #    username: ""
 #    password: ""
 
-#mybatis:
-#  mapper-locations: classpath:mapper/*.xml
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.CoCoDa.repository

@@ -3,8 +3,8 @@ package com.CoCoDa.controller;
 import java.util.HashMap;
 
 import org.json.JSONArray;
-import com.CoCoDa.dao.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.CoCoDa.repository.AttractDao;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,4 +31,5 @@ public class AttractController {
 
         return dao.selectsubway(params);
     }
+        
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.CoCoDa.service.*;
 import org.json.JSONArray;
-import org.project.cocoda.dao.AttractDao;
+import com.CoCoDa.repository.TotalDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class TotalController {
 	@GetMapping("/sales_info")
 	public HashMap<String, Object> SalesInfo(@RequestParam ArrayList<String> sigungu_arr){
 		// Base
-			HashMap<String, Object>  result = new ArrayList<>();
+			HashMap<String, Object>  result = new HashMap<>();
 		// Logic
 			result = service.SalesInfo(sigungu_arr);
 			

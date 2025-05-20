@@ -1,4 +1,4 @@
-package com.CoCoDa.dao;
+package com.CoCoDa.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.CoCoDa.mapper.TotalMapper;
 
 @Repository
 public class TotalDao {

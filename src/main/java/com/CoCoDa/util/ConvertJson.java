@@ -1,15 +1,10 @@
-package org.project.cocoda.utill;
+package com.CoCoDa.util;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConvertJson {
 
@@ -29,7 +24,7 @@ public class ConvertJson {
 				obj.put(key, value);	
 			}
 
-			result.add(obj);
+			result.put(obj);
 			obj = new JSONObject();
 
 		}
@@ -52,21 +47,18 @@ public class ConvertJson {
 	}
 
 	// JSON => MAP<String, Object>
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	public static Map<String, Object> getMapFromJsonObject(JSONObject jsonObj) {
 		Map<String, Object> map = null;
 
 		try {
 
-			map = new ObjectMapper().readValue(jsonObj.toJSONString(), Map.class);
+			//map = new ObjectMapper().readValue(jsonObj.toJSONString(), Map.class);
+			map = jsonObj.toMap();
 
-		} catch (JsonParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} 
 
 		return map;
 	}

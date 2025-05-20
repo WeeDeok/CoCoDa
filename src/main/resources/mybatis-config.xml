@@ -9,7 +9,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/AttractMapper.xml"/>
-		
+		<mapper resource="mappers/TotalMapper.xml"/>
 	</mappers>
 </configuration>
 

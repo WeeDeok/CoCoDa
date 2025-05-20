@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
-import com.cocoda.dao.TotalDAO;
-import com.cocoda.util.ConvertJson;
+import com.CoCoDa.repository.TotalDao;
+import com.CoCoDa.util.ConvertJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

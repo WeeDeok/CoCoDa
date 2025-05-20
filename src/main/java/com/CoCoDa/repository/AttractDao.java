@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.CoCoDa.mapper.AttractMapper;
 
 @Repository
 public class AttractDao {
@@ -45,7 +47,8 @@ public class AttractDao {
 				obj.put("theater", t.get("THEATER"));
 				obj.put("hotel", t.get("HOTEL"));
 				obj.put("terminal", t.get("TERMINAL"));
-				result.add(obj);
+				result.put(obj);
+				
 			}
 			
 		} catch (Exception e) {
@@ -76,7 +79,7 @@ public class AttractDao {
 				obj.put("time5", t.get("TIME5"));
 				obj.put("time6", t.get("TIME6"));
 				obj.put("time7", t.get("TIME7"));
-				array.add(obj);
+				array.put(obj);
 			}
 
 		} catch(Exception e) {
