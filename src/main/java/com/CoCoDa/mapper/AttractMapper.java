@@ -1,4 +1,4 @@
-package org.CoCoda.mapper;
+package com.CoCoDa.mapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
