@@ -3,8 +3,8 @@ package com.CoCoDa.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.CoCoDa.service.TotalService;
-import org.json.simple.JSONArray;
+import com.CoCoDa.service.*;
+import org.json.JSONArray;
 import org.project.cocoda.dao.AttractDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

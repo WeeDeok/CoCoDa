@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TotalDAO {
+public class TotalDao {
 
 		@Autowired
 		SqlSession session;

@@ -2,8 +2,8 @@ package com.CoCoDa.controller;
 
 import java.util.HashMap;
 
-import org.json.simple.JSONArray;
-import org.project.cocoda.dao.AttractDao;
+import org.json.JSONArray;
+import com.CoCoDa.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

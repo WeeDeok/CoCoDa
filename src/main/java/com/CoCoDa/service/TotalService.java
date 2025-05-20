@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.project.cocoda.dao.TotalDAO;
-import org.project.cocoda.utill.ConvertJson;
+import org.json.JSONArray;
+import com.cocoda.dao.TotalDAO;
+import com.cocoda.util.ConvertJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +93,7 @@ public class TotalService {
 					result.put("expectSales", expectSales);
 			
 			return result;
+			
 		}
 		
 		// 안정성
