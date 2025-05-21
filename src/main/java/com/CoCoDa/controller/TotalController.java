@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.CoCoDa.service.*;
-import org.json.JSONArray;
-import com.CoCoDa.repository.TotalDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/total") // 공통 경로
 public class TotalController {
 
-    private final TotalService service;
-
 	@Autowired
-    public TotalController(TotalService service) {
-        this.service = service;
-    }
+    private TotalService service;
 	
 	@GetMapping("/sales_info")
 	public HashMap<String, Object> SalesInfo(@RequestParam ArrayList<String> sigungu_arr){

@@ -3,7 +3,6 @@ package com.CoCoDa.repository;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.ibatis.session.SqlSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,8 @@ import com.CoCoDa.mapper.AttractMapper;
 public class AttractDao {
 
 	@Autowired
-	SqlSession session;
+	private AttractMapper mapper;
+	//SqlSession session;
 	
 	public JSONArray selectattraction(int sigungu_cd) {
 		
@@ -24,7 +24,8 @@ public class AttractDao {
 		datalist.put("sigungu_cd", sigungu_cd);
 		
 		try {	
-			AttractMapper mapper = session.getMapper(AttractMapper.class);
+
+			//AttractMapper mapper = session.getMapper(AttractMapper.class);
 			ArrayList<HashMap <String,Object>> bring = mapper.selectattraction(datalist);
 			
 			for (HashMap <String,Object> t : bring) {
@@ -64,7 +65,7 @@ public class AttractDao {
 		
 		try {
 			
-			AttractMapper mapper = session.getMapper(AttractMapper.class);
+			//AttractMapper mapper = session.getMapper(AttractMapper.class);
 			
 			ArrayList<HashMap<String,Object>> result = mapper.selectsubway(list);
 			

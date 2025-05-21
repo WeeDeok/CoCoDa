@@ -8,8 +8,8 @@
 		
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/AttractMapper.xml"/>
-		<mapper resource="mappers/TotalMapper.xml"/>
+		<mapper resource="mapper/AttractMapper.xml"/>
+		<mapper resource="mapper/TotalMapper.xml"/>
 	</mappers>
 </configuration>
 

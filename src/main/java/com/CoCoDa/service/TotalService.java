@@ -14,13 +14,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class TotalService {
 
-    private final TotalDao dao;
-
-    @Autowired
-    public TotalService(TotalDao dao) {
-        this.dao = dao;
-    }
-		
+	@Autowired	
+    private TotalDao dao;
+	
 		public HashMap<String, Object> SalesInfo(ArrayList<String> sigungu_arr) {
 			// Base
 				HashMap<String, Object> result = new HashMap<>();

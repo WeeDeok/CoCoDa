@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/attract") // 공통 경로
 public class AttractController {
 
+    @Autowired
     private final AttractDao dao;
 
-    @Autowired
     public AttractController(AttractDao dao) {
         this.dao = dao;
     }
