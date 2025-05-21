@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: //localhost:3306/CoCoDa_DB
     username: ADMIN
-    password: 1541
+    password: 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
