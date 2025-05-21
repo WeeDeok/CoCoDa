@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.CoCoDa.mapper.TotalMapper;
@@ -12,7 +11,6 @@ import com.CoCoDa.mapper.TotalMapper;
 @Repository
 public class TotalDao {
 
-    @Autowired
     private TotalMapper mapper;
 
     // 매출 정보

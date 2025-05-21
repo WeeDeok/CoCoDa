@@ -13,7 +13,6 @@ import com.CoCoDa.mapper.AttractMapper;
 @Repository
 public class AttractDao {
 
-	@Autowired
 	private AttractMapper mapper;
 	//SqlSession session;
 	
