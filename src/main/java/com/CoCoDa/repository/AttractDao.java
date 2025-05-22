@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.CoCoDa.mapper.AttractMapper;
@@ -14,7 +13,6 @@ import com.CoCoDa.mapper.AttractMapper;
 public class AttractDao {
 
 	private AttractMapper mapper;
-	//SqlSession session;
 	
 	public JSONArray selectattraction(int sigungu_cd) {
 		
@@ -24,7 +22,6 @@ public class AttractDao {
 		
 		try {	
 
-			//AttractMapper mapper = session.getMapper(AttractMapper.class);
 			ArrayList<HashMap <String,Object>> bring = mapper.selectattraction(datalist);
 			
 			for (HashMap <String,Object> t : bring) {
@@ -64,8 +61,6 @@ public class AttractDao {
 		
 		try {
 			
-			//AttractMapper mapper = session.getMapper(AttractMapper.class);
-			
 			ArrayList<HashMap<String,Object>> result = mapper.selectsubway(list);
 			
 			for (HashMap<String,Object> t : result) {
@@ -87,6 +82,7 @@ public class AttractDao {
 		}
 		
 		return array;
+		
 	}
 	
 	
