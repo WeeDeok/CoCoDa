@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.CoCoDa.mapper.qaboardMapper">
+
+<!-- 게시글 읽기 -->
+	<select id="readingBoard" resultType="board" parameterType="string">
+
+		SELECT
+			BOARDNUM
+			, ID
+			, TITLE
+			, TO_CHAR(INPUTDATE, 'YYYY-MM-DD') AS INPUTDATE
+			, HITS
+		FROM
+			QABOARD
+		<if test="_parameter != null">
+		WHERE
+			TITLE LIKE '%' || #{searchText} || '%'
+		</if>
+		 ORDER BY BOARDNUM DESC
+
+	</select>
+	
+	<select id="readingEachBoard" resultType="board" parameterType="int" >
+
+		SELECT 
+			BOARDNUM
+			, ID
+			, TITLE
+			, CONTENT
+			, TO_CHAR(INPUTDATE, 'YYYY-MM-DD') AS INPUTDATE
+			, HITS
+		  FROM QABOARD
+		 WHERE BOARDNUM = #{boardnum}
+	
+	</select>
+
+	<insert id="insertboard" parameterType="board">
+
+		INSERT INTO QABOARD (
+			BOARDNUM
+			, ID
+			, TITLE
+			, CONTENTt
+		) VALUES (
+			QABOARD_SEQ.NEXTVAL
+			, #{id}
+			, #{title}
+			, #{content}
+		)
+
+	</insert>
+
+	<!-- 조회수 1 증가 -->
+	<update id="addHits" parameterType="int">
+
+		UPDATE
+			QABOARD
+		SET
+			HITS = HITS + 1
+		where
+			BOARDNUM = #{boardnum}
+
+	</update>
+	
+	<delete id= "deleteBoard" parameterType="int">
+	
+		DELETE
+		
+			QABOARD
+			
+		WHERE
+		
+			BOARDNUM = #{boardnum}
+			
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="board">
+
+		UPDATE
+			QABOARD
+		SET
+			TITLE = #{title}
+			, CONTENT = #{content}
+		WHERE
+			BOARDNUM = #{boardnum}
+			AND ID = #{id}
+
+	</update>
+	
+	<!-- 전체 글 개수 (검색 필터링 후) -->			
+	<select id="getTotal" parameterType="string" resultType="int">			
+		SELECT 
+			COUNT(*)
+		FROM		
+			QABOARD	
+		<if test="_parameter != null">		
+		WHERE		
+			TITLE LIKE '%' || #{searchText} || '%'	
+		</if>		
+	</select>	
+	
+	<insert id="insertReply" parameterType="reply">
+
+		INSERT INTO
+			QAREPLY(
+				REPLYNUM
+				, BOARDNUM
+				, ID
+				, TEXT
+			) VALUES (
+				QAREPLY_SEQ.NEXTVAL
+				,#{boardnum}
+				,#{id}
+				,#{text}
+			)
+			
+	</insert>
+			
+	<select id="listReply" parameterType="int" resultType="reply">
+		
+		SELECT
+			REPLYNUM
+			, BOARDNUM
+			, ID
+			, TEXT
+			, TO_CHAR(INPUTDATE,'yyyy-mm-dd') AS INPUTDATE
+		FROM
+			QAREPLY
+		WHERE	
+			BOARDNUM = #{boardnum}
+		ORDER BY REPLYNUM
+			
+	</select>
+	
+	<!-- 리플삭제 -->
+	<delete id="deleteReply" parameterType="reply">
+		
+		DELETE FROM
+			QAREPLY
+		WHERE
+			REPLYNUM = #{replynum}
+			AND
+			ID = #{id}
+
+	</delete>
+	
+	<!-- 리플 수정 -->
+	<update id="updateReply" parameterType="reply">
+		UPDATE
+			QAREPLY
+		SET
+			TEXT = #{text}
+		WHERE
+			REPLYNUM = #{replynum}
+			AND
+			ID = #{id}
+	</update>
+</mapper>

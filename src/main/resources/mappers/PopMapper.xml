@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.CoCoDa.mapper.PopMapper">
+
+	<select id="selectmonth" resultType="String" parameterType="String">
+
+		SELECT
+				FIXED_DATE
+			FROM
+			<choose>
+				<when test='data == "stay"'>
+					(SELECT
+						FIXED_DATE
+						, ROWNUM
+					FROM
+						(SELECT DISTINCT
+							FIXED_DATE
+						FROM
+							STAY_POPULATION_TB)
+					ORDER BY
+						FIXED_DATE DESC)
+					WHERE
+					<![CDATA[
+					ROWNUM < 5
+					]]>
+				</when>
+				<when test='data == "float"'>
+					(SELECT
+						FIXED_DATE
+						, ROWNUM
+					FROM
+						(SELECT DISTINCT
+							FIXED_DATE
+						FROM
+							FLOAT_POPULATION_TB)
+					ORDER BY
+						FIXED_DATE DESC)
+					WHERE
+					<![CDATA[
+					ROWNUM < 5
+					]]>
+				</when>
+				<when test='data == "worker"'>
+					(SELECT
+						FIXED_DATE
+						, ROWNUM
+					FROM
+						(SELECT DISTINCT
+							FIXED_DATE
+						FROM
+							WORKER_POPULATION_TB)
+					ORDER BY
+						FIXED_DATE DESC)
+					WHERE
+					<![CDATA[
+					ROWNUM < 5
+					]]>
+				</when>
+
+	</select>
+
+	<select id="selectstay" resultType="Selectkey" parameterType="HashMap">
+
+		SELECT
+				SUM(SPOP) AS ALLPOP1,
+				SUM(CASE WHEN AGE = 10 THEN SPOP ELSE 0 END) AS AGEPOP10,
+				SUM(CASE WHEN AGE = 20 THEN SPOP ELSE 0 END) AS AGEPOP20,
+				SUM(CASE WHEN AGE = 30 THEN SPOP ELSE 0 END) AS AGEPOP30,
+				SUM(CASE WHEN AGE = 40 THEN SPOP ELSE 0 END) AS AGEPOP40,
+				SUM(CASE WHEN AGE = 50 THEN SPOP ELSE 0 END) AS AGEPOP50,
+				SUM(CASE WHEN AGE = 60 THEN SPOP ELSE 0 END) AS AGEPOP60,
+				SUM(CASE WHEN GENDER = 0 THEN SPOP ELSE 0 END) AS MANPOP,
+				SUM(CASE WHEN GENDER = 1 THEN SPOP ELSE 0 END) AS WOMANPOP
+			FROM
+				STAY_POPULATION_TB
+			WHERE
+				TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+				AND SIGUNGU_CD = #{sigungu_cd};
+
+	</select>
+
+	<select id="selectworker" resultType="Selectkey" parameterType="HashMap">
+
+		SELECT DISTINCT
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) ALLPOP1,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 10
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP10,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 20
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP20,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 30
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP30,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 40
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP40,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 50
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP50,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE AGE = 60
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) AGEPOP60,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE GENDER = 0
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) MANPOP,
+				(SELECT SUM(WPOP)
+				FROM WORKER_POPULATION_TB
+				WHERE GENDER = 1
+					AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+					AND SIGUNGU_CD = #{sigungu_cd}) WOMANPOP
+			FROM
+				WORKER_POPULATION_TB
+			WHERE
+				SIGUNGU_CD = #{sigungu_cd}
+
+	</select>
+
+	<select id="selectfloat" resultType="Selectkey" parameterType="HashMap">
+
+		SELECT
+			SUM(fpop) AS allpop1,
+			SUM(CASE WHEN gender = 0 THEN fpop ELSE 0 END) AS manpop,
+			SUM(CASE WHEN gender = 1 THEN fpop ELSE 0 END) AS womanpop,
+			SUM(CASE WHEN age = 10 THEN fpop ELSE 0 END) AS agepop10,
+			SUM(CASE WHEN age = 20 THEN fpop ELSE 0 END) AS agepop20,
+			SUM(CASE WHEN age = 30 THEN fpop ELSE 0 END) AS agepop30,
+			SUM(CASE WHEN age = 40 THEN fpop ELSE 0 END) AS agepop40,
+			SUM(CASE WHEN age = 50 THEN fpop ELSE 0 END) AS agepop50,
+			SUM(CASE WHEN age = 60 THEN fpop ELSE 0 END) AS agepop60,
+			SUM(CASE WHEN timeline = 1 THEN fpop ELSE 0 END) AS timepop1,
+			SUM(CASE WHEN timeline = 2 THEN fpop ELSE 0 END) AS timepop2,
+			SUM(CASE WHEN timeline = 3 THEN fpop ELSE 0 END) AS timepop3,
+			SUM(CASE WHEN timeline = 4 THEN fpop ELSE 0 END) AS timepop4,
+			SUM(CASE WHEN timeline = 5 THEN fpop ELSE 0 END) AS timepop5,
+			SUM(CASE WHEN timeline = 6 THEN fpop ELSE 0 END) AS timepop6,
+			SUM(CASE WHEN week IN (1,2,3,4,5) THEN fpop ELSE 0 END) AS onweekpop,
+			SUM(CASE WHEN week IN (0,6) THEN fpop ELSE 0 END) AS weekendpop,
+			SUM(CASE WHEN week = 1 THEN fpop ELSE 0 END) AS monpop,
+			SUM(CASE WHEN week = 2 THEN fpop ELSE 0 END) AS tuepop,
+			SUM(CASE WHEN week = 3 THEN fpop ELSE 0 END) AS wedpop,
+			SUM(CASE WHEN week = 4 THEN fpop ELSE 0 END) AS thrpop,
+			SUM(CASE WHEN week = 5 THEN fpop ELSE 0 END) AS fripop,
+			SUM(CASE WHEN week = 6 THEN fpop ELSE 0 END) AS satpop,
+			SUM(CASE WHEN week = 0 THEN fpop ELSE 0 END) AS sunpop
+		FROM
+			FLOAT_POPULATION_TB
+		WHERE
+			FIXED_DATE = TO_TIMESTAMP(#{fixedDate}, 'YYYY-MM-DD HH24:MI:SS')
+			AND SIGUNGUCD = #{sigunguCd}
+
+	</select>
+
+	<select id="selectincome" resultType="Selectincome" parameterType="HashMap">
+
+		SELECT MONTH_INCOME
+		     , INCOMERATE
+		     , FOOD
+		     , CLOTH
+		     , LIVING
+		     , MEDI
+		     , TRANSPORT
+		     , HOBBY
+		     , CULTURE
+		     , EDU
+		     , PLAY
+		  FROM INCOME_TB
+		 WHERE SIGUNGU_CD = #{sigungu_cd}
+		   AND TO_CHAR(FIXED_DATE,'rrrr-mm-dd HH24:MI:SS')=#{fixed_date}
+
+	</select>
+	
+	<select id="selectfloat2" parameterType="HashMap" resultType="Selectkey">
+			
+		SELECT
+			SUM(fpop) AS allpop1,
+			SUM(CASE WHEN gender = 0 THEN fpop ELSE 0 END) AS manpop,
+			SUM(CASE WHEN gender = 1 THEN fpop ELSE 0 END) AS womanpop,
+			SUM(CASE WHEN age = 10 THEN fpop ELSE 0 END) AS agepop10,
+			SUM(CASE WHEN age = 20 THEN fpop ELSE 0 END) AS agepop20,
+			SUM(CASE WHEN age = 30 THEN fpop ELSE 0 END) AS agepop30,
+			SUM(CASE WHEN age = 40 THEN fpop ELSE 0 END) AS agepop40,
+			SUM(CASE WHEN age = 50 THEN fpop ELSE 0 END) AS agepop50,
+			SUM(CASE WHEN age = 60 THEN fpop ELSE 0 END) AS agepop60,
+			SUM(CASE WHEN timeline = 1 THEN fpop ELSE 0 END) AS timepop1,
+			SUM(CASE WHEN timeline = 2 THEN fpop ELSE 0 END) AS timepop2,
+			SUM(CASE WHEN timeline = 3 THEN fpop ELSE 0 END) AS timepop3,
+			SUM(CASE WHEN timeline = 4 THEN fpop ELSE 0 END) AS timepop4,
+			SUM(CASE WHEN timeline = 5 THEN fpop ELSE 0 END) AS timepop5,
+			SUM(CASE WHEN timeline = 6 THEN fpop ELSE 0 END) AS timepop6,
+			SUM(CASE WHEN week IN (1,2,3,4,5) THEN fpop ELSE 0 END) AS onweekpop,
+			SUM(CASE WHEN week IN (0,6) THEN fpop ELSE 0 END) AS weekendpop,
+			SUM(CASE WHEN week = 1 THEN fpop ELSE 0 END) AS monpop,
+			SUM(CASE WHEN week = 2 THEN fpop ELSE 0 END) AS tuepop,
+			SUM(CASE WHEN week = 3 THEN fpop ELSE 0 END) AS wedpop,
+			SUM(CASE WHEN week = 4 THEN fpop ELSE 0 END) AS thrpop,
+			SUM(CASE WHEN week = 5 THEN fpop ELSE 0 END) AS fripop,
+			SUM(CASE WHEN week = 6 THEN fpop ELSE 0 END) AS satpop,
+			SUM(CASE WHEN week = 0 THEN fpop ELSE 0 END) AS sunpop
+		FROM
+			FLOAT_POPULATION_TB2
+		WHERE
+			FIXED_DATE = TO_TIMESTAMP(#{fixed_date}, 'YYYY-MM-DD HH24:MI:SS')
+			AND WGSX BETWEEN (#{wgsx} - 0.0025) AND (#{wgsx} + 0.0025)
+			AND WGSY BETWEEN (#{wgsy} - 0.0025) AND (#{wgsy} + 0.0025);
+
+	</select>
+	
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.CoCoDa.mapper.IndexMapper">
+	<select id ="division_middle" parameterType="string" resultType="map" >
+	
+		SELECT SALES_DIVISON_M_CD
+		     , SALES_DIVISON_M_NM
+		     , SALES_DIVISON_S_CD
+			 , SALES_DIVISON_S_NM
+		  FROM SALES_DIVISION
+		 WHERE SALES_DIVISON_L_CD = #{sales_divison_l_cd}
+	  ORDER BY SALES_DIVISON_M_CD
+		
+	</select>
+		
+	<select id ="divisionMap"  parameterType="string" resultType="hashmap">
+
+		SELECT SALES_DIVISON_1_NM
+			 , SALES_DIVISON_M_NM
+			 , SALES_DIVISON_S_NM
+		  FROM SALES_DIVISION
+		 WHERE SALES_DIVISION_S_CD = #{_parameter}
+
+	</select>
+
+	<select id = "divisionNm" parameterType = "string" resultType = "string">
+
+		SELECT SALES_DIVISON_S_NM
+		  FROM SALES_DIVISION
+		 WHERE SALES_DIVISON_S_CD = #{_parameter}
+		
+	</select>
+
+</mapper>

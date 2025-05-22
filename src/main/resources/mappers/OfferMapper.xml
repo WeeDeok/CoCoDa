@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.CoCoDa.mapper.OfferMapper">
+	
+	<select id="selectmonth" resultType="String" parameterType="String">
+
+	SELECT FIXED_DATE
+	  FROM
+	<choose>
+		<when test='data == "sales"'>
+			(
+				SELECT FIXED_DATE 
+				     , ROWNUM
+			      FROM
+						(
+							SELECT DISTINCT FIXED_DATE
+						      FROM SALES_TB
+						)
+				 ORDER BY FIXED_DATE DESC
+						
+			)
+						WHERE 
+						<![CDATA[
+							rownum < 5
+						]]>
+		</when>
+	</choose>
+
+</select>
+	
+	<select id="selectoffer" parameterType="ArrayList" resultType="HashMap">
+
+		SELECT SIGUNGU_NM
+			 , SALES_DIVISON_S_CD
+			 , SALES_DIVISON_M_NM
+			 , AVG_BIZ_MONTH
+			 , LESSONEYEAR
+			 , TWOYEAR
+			 , THREEYEAR
+			 , FOURYEAR
+			 , OVERFIVEYEAR
+			 , SALES_FIGURES_MON
+			 , SALES_FIGURES_TUE
+			 , SALES_FIGURES_WED
+			 , SALES_FIGURES_THU
+			 , SALES_FIGURES_FRI
+			 , SALES_FIGURES_SAT
+			 , SALES_FIGURES_SUN
+			 , TIME1
+			 , TIME2
+			 , TIME3
+			 , TIME4
+			 , TIME5
+			 , TIME6
+			 , MAN
+			 , WOMAN
+			 , AGESALE10
+			 , AGESALE20
+			 , AGESALE30
+			 , AGESALE40
+			 , AGESALE50
+			 , AGESALE60
+			 , SALES_CNT_MON
+			 , SALES_CNT_TUE
+			 , SALES_CNT_WED
+			 , SALES_CNT_THU
+			 , SALES_CNT_FRI
+			 , SALES_CNT_SAT
+			 , SALES_CNT_SUN
+			 , SALES_CNT_TIME1
+			 , SALES_CNT_TIME2
+			 , SALES_CNT_TIME3
+			 , SALES_CNT_TIME4
+			 , SALES_CNT_TIME5
+			 , SALES_CNT_TIME6
+			 , MAN_CNT
+			 , WOMAN_CNT
+			 , AGE_CNT_10
+			 , AGE_CNT_20
+			 , AGE_CNT_30
+			 , AGE_CNT_40
+			 , AGE_CNT_50
+			 , AGE_CNT_60
+			 , STORE_CNT
+			 , TO_CHAR(FIXED_DATE, 'YYYY/MM/DD') TEMPMONTH
+	     FROM SALES_TB
+	    WHERE SIGUNGU_CD = #{sigungu_cd}
+		  AND TO_CHAR(FIXED_DATE, 'RRRR-MM-DD HH24:MI:SS') = #{fixed_date}
+		  AND SALES_DIVISON_S_CD = #{sales_divison_s_cd}
+
+	</select>
+
+</mapper>

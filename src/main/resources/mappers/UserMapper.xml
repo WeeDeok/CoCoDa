@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.CoCoDa.mapper.userMapper">
+  
+  <select id="userlogin" resultType="user" parameterType="user">
+
+	SELECT
+		 USERID
+		 ,USERPW
+	FROM
+		USERS 
+	WHERE
+		USERID # {userid}
+	AND
+		USERPW=#{userpw}
+
+	</select>
+  
+
+	<insert id="userjoin" parameterType="user">
+
+		INSERT INTO USER'S (
+			USERID
+			, USWERPW
+			, USERNAME
+			, USEREMAIL
+		) VALUES (
+			#{userid}
+			,#{userpw}
+			,#{username}
+			,#{useremail}
+		)
+			
+	</insert>
+  
+  
+  <!-- ID로 회원 정보 검색 -->
+	<select id="searchUserid" resultType="String">
+
+		SELECT USERID FROM USERS WHERE USERID = #{userid}
+
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="joinUser" parameterType="user">
+
+		INSERT INTO USERS (
+			USERID
+			, USERPW
+			, USERNAME
+			, USEREMAIL
+		)
+		values (
+			#{userid}
+			, #{userpw}
+			, #{username}
+			, #{useremail}
+		)
+		
+	</insert>
+  
+  </mapper>
+  
+  

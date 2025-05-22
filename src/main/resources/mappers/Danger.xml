@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.CoCoDa.mapper.Danger_mapper">
+
+<select id="bringdanger" resultType="HashMap">
+
+	SELECT SIGUNGU_CD,
+    	   DANGER_CD,
+		   DANGER_POINT
+	  FROM DANGER_TB
+	 WHERE FIXED_DATE =
+						(
+							SELECT FIXED_DATE
+							FROM
+								 (
+								 	SELECT FIXED_DATE, ROWNUM
+								 	  FROM DANGER_TB
+								 	 ORDER BY FIXED_DATE DESC
+								 )
+							WHERE ROWNUM = 1
+						)
+
+</select>
+
+</mapper>
