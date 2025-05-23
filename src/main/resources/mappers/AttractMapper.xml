@@ -51,7 +51,7 @@
 	<select id = "selectsubway" parameterType="HashMap" resultType="HashMap">
 
 		SELECT TO_CHAR(fixed_date, 'yyyy-mm') AS fixed_date,
-			sub_nm,
+			SUB_NM,
 			SUM(time1) AS time1,
 			SUM(time2) AS time2,
 			SUM(time3) AS time3,
@@ -59,7 +59,7 @@
 			SUM(time5) AS time5,
 			SUM(time6) AS time6,
 			SUM(time7) AS time7
-		FROM subway_pop_tb
+		FROM SUBWAY_POP_TB
 		WHERE wgsx BETWEEN (#{wgsx} - 0.0025) AND (#{wgsx} + 0.0025)
 		AND wgsy BETWEEN (#{wgsy} - 0.0025) AND (#{wgsy} + 0.0025)
 		GROUP BY TO_CHAR(fixed_date, 'yyyy-mm'), sub_nm

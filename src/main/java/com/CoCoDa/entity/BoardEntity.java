@@ -1,104 +1,49 @@
 package com.CoCoDa.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "BOARD")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Builder
 public class BoardEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT 방식
-    @Column(name = "boardNum")
-    private Integer boardNum;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BOARDNUM")
+    private int boardNum;
 
-    @Column(name = "id", nullable = false, length = 50)
+    @Column(name = "ID")
     private String id;
 
-    @Column(name = "title", nullable = false, length = 200)
+    @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "content", columnDefinition = "TEXT")
+    @Column(name = "CONTENT")
     private String content;
 
-    @Column(name = "inputDate")
+    @Column(name = "INPUTDATE")
     private LocalDateTime inputDate;
 
-    @Column(name = "hits")
+    @Column(name = "HITS")
     private int hits;
-
-    // 기본 생성자
-    protected BoardEntity() {
-    }
-
-    // 모든 필드를 받는 생성자
-    public BoardEntity(String id, String title, String content, LocalDateTime inputDate, int hits) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.inputDate = inputDate;
-        this.hits = hits;
-    }
-
-    // Getter 및 Setter
-    public Integer getBoardNum() {
-        return boardNum;
-    }
-
-    public void setBoardNum(Integer boardNum) {
-        this.boardNum = boardNum;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getInputDate() {
-        return inputDate;
-    }
-
-    public void setInputDate(LocalDateTime inputDate) {
-        this.inputDate = inputDate;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public void setHits(int hits) {
-        this.hits = hits;
-    }
-
-    @Override
-    public String toString() {
-        return "Board{" +
-                "boardNum=" + boardNum +
-                ", id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", inputDate=" + inputDate +
-                ", hits=" + hits +
-                '}';
-    }
     
 }
