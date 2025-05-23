@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,5 +7,60 @@
 </head>
 <body>
 Hello, World!!
+</body>
+</html>
+-->
+
+<!-- 게시판 테스트 코드 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <h1>게시판</h1>
+
+    <form method="get" action="/boardPage">
+        <input type="text" name="searchText" placeholder="검색어 입력" th:value="${searchText}" />
+        <button type="submit">검색</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boardlist}">
+                <td th:text="${board.boardNum}"></td>
+                <td>
+                    <a th:href="@{/readingEachBoard(boardnum=${board.boardNum})}" th:text="${board.title}"></a>
+                </td>
+                <td th:text="${board.id}"></td>
+                <td th:text="${board.inputDate}"></td>
+                <td th:text="${board.hits}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <a th:if="${navi.currentPage > 1}" th:href="@{/boardPage(page=${navi.currentPage - 1}, searchText=${searchText})}">이전</a>
+        <span th:each="i : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+            <a th:href="@{/boardPage(page=${i}, searchText=${searchText})}" 
+               th:text="${i}" 
+               th:classappend="${i == navi.currentPage} ? 'active' : ''">
+            </a>
+        </span>
+        <a th:if="${navi.currentPage < navi.totalPageCount}" th:href="@{/boardPage(page=${navi.currentPage + 1}, searchText=${searchText})}">다음</a>
+    </div>
+
+    <a href="/towrite">글쓰기</a>
 </body>
 </html>

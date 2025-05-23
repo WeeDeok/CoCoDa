@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BoardDao {
 
-	@Autowired
 	private BoardMapper mapper;
 	
 	public List<BoardVO> readingBoard(String searchText, int startRecord, int countPerPage) {
@@ -108,6 +107,6 @@ public class BoardDao {
 		int numm = 0;
 		numm = mapper.updateReply(reply);
 		return numm;
-		
+
 	}
 }

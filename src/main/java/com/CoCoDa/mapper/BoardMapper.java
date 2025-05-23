@@ -4,14 +4,14 @@ import java.util.List;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 import com.CoCoDa.vo.BoardVO;
 import com.CoCoDa.vo.ReplyVO;
 
+@Mapper
 public interface BoardMapper {
 
-	//public List<board> readingBoard();
-	
 	public List<BoardVO> readingBoard(String searchText, RowBounds rb);
 	
 	public int addHits(int boardnum);
