@@ -1,19 +1,19 @@
 package com.CoCoDa.vo;
 
-public class board {
-	int boardnum;					//글번호
-	String id;						//작성자 ID
-	String title;					//글제목
-	String content;					//글내용
-	String inputdate;				//작성날짜,시간
-	int hits;						//조회수
+public class boardVO {
+
+	private int boardnum;					//글번호
+	private String id;						//작성자 ID
+	private String title;					//글제목
+	private String content;					//글내용
+	private String inputdate;				//작성날짜,시간
+	private int hits;						//조회수
 		
-	public board() {
+	public boardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public board(int boardnum, String id, String title, String content, String inputdate, int hits) {
+	public boardVO(int boardnum, String id, String title, String content, String inputdate, int hits) {
 		super();
 		this.boardnum = boardnum;
 		this.id = id;
@@ -77,7 +77,4 @@ public class board {
 				+ ", inputdate=" + inputdate + ", hits=" + hits + "]";
 	}
 	
-	
-	
-
 }

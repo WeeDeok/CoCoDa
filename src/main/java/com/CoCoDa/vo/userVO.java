@@ -1,17 +1,17 @@
 package com.CoCoDa.vo;
 
-public class user {
+public class userVO {
 	
 	private String userid;
     private String userpw;
     private String username;
     private String useremail;
     
-	public user() {
+	public userVO() {
 		super();
 	}
 
-	public user(String userid, String userpw, String username, String useremail) {
+	public userVO(String userid, String userpw, String username, String useremail) {
 		super();
 		this.userid = userid;
 		this.userpw = userpw;

@@ -28,7 +28,6 @@ public class IndexVO {
 
 	public IndexVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getCx() {

@@ -1,40 +1,40 @@
 package com.CoCoDa.vo;
 
-public class selectKey {
+public class selectKeyVO {
 
-	public int allpop1;
-	public int allpop2;
-	public int allpop3;
-	public int allpop4;
-	public int manpop;
-	public int womanpop;
-	public int agepop10;
-	public int agepop20;
-	public int agepop30;
-	public int agepop40;
-	public int agepop50;
-	public int agepop60;
-	public int timepop1;
-	public int timepop2;
-	public int timepop3;
-	public int timepop4;
-	public int timepop5;
-	public int timepop6;
-	public int onweekpop;
-	public int weekendpop;
-	public int monpop;
-	public int tuepop;
-	public int wedpop;
-	public int thrpop;
-	public int fripop;
-	public int satpop;
-	public int sunpop;
-	public int fixed_month;
+	private int allpop1;
+	private int allpop2;
+	private int allpop3;
+	private int allpop4;
+	private int manpop;
+	private int womanpop;
+	private int agepop10;
+	private int agepop20;
+	private int agepop30;
+	private int agepop40;
+	private int agepop50;
+	private int agepop60;
+	private int timepop1;
+	private int timepop2;
+	private int timepop3;
+	private int timepop4;
+	private int timepop5;
+	private int timepop6;
+	private int onweekpop;
+	private int weekendpop;
+	private int monpop;
+	private int tuepop;
+	private int wedpop;
+	private int thrpop;
+	private int fripop;
+	private int satpop;
+	private int sunpop;
+	private int fixed_month;
 
-	public selectKey() {
+	public selectKeyVO() {
 	}
 
-	public selectKey(int allpop1, int allpop2, int allpop3, int allpop4, int manpop, int womanpop, int agepop10,
+	public selectKeyVO(int allpop1, int allpop2, int allpop3, int allpop4, int manpop, int womanpop, int agepop10,
 			int agepop20, int agepop30, int agepop40, int agepop50, int agepop60, int timepop1, int timepop2,
 			int timepop3, int timepop4, int timepop5, int timepop6, int onweekpop, int weekendpop, int monpop,
 			int tuepop, int wedpop, int thrpop, int fripop, int satpop, int sunpop, int fixed_month) {

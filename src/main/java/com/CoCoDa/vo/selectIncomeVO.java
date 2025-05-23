@@ -1,6 +1,6 @@
 package com.CoCoDa.vo;
 
-public class selectIncome {
+public class selectIncomeVO {
 			
 		private int fixed_month;
 		private int incomerate;
@@ -15,9 +15,9 @@ public class selectIncome {
 		private int edu;
 		private int play;
 		
-		public selectIncome() {}
+		public selectIncomeVO() {}
 
-		public selectIncome(int fixed_month, int incomerate, int month_income, int food, int cloth, int living, int medi,
+		public selectIncomeVO(int fixed_month, int incomerate, int month_income, int food, int cloth, int living, int medi,
 				int transport, int hobby, int culture, int edu, int play) {
 			super();
 			this.fixed_month = fixed_month;

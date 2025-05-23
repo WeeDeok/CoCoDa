@@ -1,19 +1,18 @@
 package com.CoCoDa.vo;
 
-public class reply {
+public class replyVO {
 	
-	int replynum;		//리플번호
-	int boardnum;		//본문 글번호
-	String id;		//작성자 ID
-	String text;		//리플내용
-	String inputdate;		//작성날짜
+	private int replynum;		//리플번호
+	private int boardnum;		//본문 글번호
+	private String id;		//작성자 ID
+	private String text;		//리플내용
+	private String inputdate;		//작성날짜
 	
-	public reply() {
+	public replyVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public reply(int replynum, int boardnum, String id, String text, String inputdate) {
+	public replyVO(int replynum, int boardnum, String id, String text, String inputdate) {
 		super();
 		this.replynum = replynum;
 		this.boardnum = boardnum;
