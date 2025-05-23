@@ -9,7 +9,6 @@ import com.CoCoDa.repository.BoardRepository;
 import com.CoCoDa.vo.BoardVO;
 import com.CoCoDa.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.*;
 
@@ -21,44 +20,46 @@ public class BoardService {
 	private BoardDao dao;
     private BoardRepository boardRepository;
 	
-	public List<BoardVO> readingBoard(String searchText, int startRecord, int countPerPage) {
-		List<BoardVO> bo = new ArrayList<>();
+	public Page<BoardEntity> getAllBoards(int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("boardNum").descending());
+        return boardRepository.findAll(pageable);
+
+    }
+
+    public Page<BoardEntity> searchBoards(String keyword, int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("boardNum").descending());
+        return boardRepository.findByTitleContaining(keyword, pageable);
+
+    }
+
+    public BoardEntity getBoardById(int boardNum) {
+        return boardRepository.findById(boardNum)
+                .orElseThrow(() -> new RuntimeException("Board not found"));
+    }	
+
+    public BoardEntity createBoard(BoardEntity board) {
+
+        return boardRepository.save(board);
+
+    }
+	
+	public void deleteBoard(int boardnum) {
 		
-		bo = dao.readingBoard(searchText,startRecord,countPerPage);
-		
-		return bo;
+		BoardEntity.builder().boardNum(boardnum).build();
+
 	}
 	
-	public int insert(BoardVO board) {
-		int num =0;
-		
-		num = dao.insert(board);
-		
-		return num;
-	}
-	
-	
-	public BoardVO readingEachBoard(int boardnum) {
-		BoardVO eachBoard = null;
-		eachBoard = dao.readingEachBoard(boardnum);
-		
-		return eachBoard;		
-	}
-	
-	public int deleteBoard(int boardnum) {
-		int num = 0;
-		num=dao.deleteBoard(boardnum);
-		
-		return num;
-	}
-	
-	public int updateBoard(BoardVO board) {
-		int num= 0;
-		num = dao.updateBoard(board);
-		
-		return num;
-	}
-	
+    public BoardEntity updateBoard(int boardNum, BoardEntity board) {
+
+        BoardEntity existing = getBoardById(boardNum);
+        existing.setTitle(board.getTitle());
+        existing.setContent(board.getContent());
+        return boardRepository.save(existing);
+
+    }
+
 	public int getTotal(String searchText) {
 		int num = 0;
 		num = dao.getTotal(searchText);

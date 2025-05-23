@@ -66,6 +66,11 @@ public class ReplyVO {
 		return "reply [replynum=" + replynum + ", boardnum=" + boardnum + ", id=" + id + ", text=" + text
 				+ ", inputdate=" + inputdate + "]";
 	}
+
+	public Object getContent() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getContent'");
+	}
 	
 
 }

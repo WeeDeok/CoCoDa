@@ -8,7 +8,6 @@ import com.CoCoDa.vo.BoardVO;
 import com.CoCoDa.vo.ReplyVO;
 
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -109,4 +108,5 @@ public class BoardDao {
 		return numm;
 
 	}
+	
 }
