@@ -1,6 +1,6 @@
 package com.CoCoDa.vo;
 
-public class boardVO {
+public class BoardVO {
 
 	private int boardnum;					//글번호
 	private String id;						//작성자 ID
@@ -9,11 +9,11 @@ public class boardVO {
 	private String inputdate;				//작성날짜,시간
 	private int hits;						//조회수
 		
-	public boardVO() {
+	public BoardVO() {
 		super();
 	}
 
-	public boardVO(int boardnum, String id, String title, String content, String inputdate, int hits) {
+	public BoardVO(int boardnum, String id, String title, String content, String inputdate, int hits) {
 		super();
 		this.boardnum = boardnum;
 		this.id = id;

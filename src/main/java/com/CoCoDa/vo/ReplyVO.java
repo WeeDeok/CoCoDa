@@ -1,6 +1,6 @@
 package com.CoCoDa.vo;
 
-public class replyVO {
+public class ReplyVO {
 	
 	private int replynum;		//리플번호
 	private int boardnum;		//본문 글번호
@@ -8,11 +8,11 @@ public class replyVO {
 	private String text;		//리플내용
 	private String inputdate;		//작성날짜
 	
-	public replyVO() {
+	public ReplyVO() {
 		super();
 	}
 
-	public replyVO(int replynum, int boardnum, String id, String text, String inputdate) {
+	public ReplyVO(int replynum, int boardnum, String id, String text, String inputdate) {
 		super();
 		this.replynum = replynum;
 		this.boardnum = boardnum;
