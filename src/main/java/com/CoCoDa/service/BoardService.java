@@ -47,7 +47,7 @@ public class BoardService {
 	
 	public void deleteBoard(int boardnum) {
 		
-		BoardEntity.builder().boardNum(boardnum).build();
+		boardRepository.deleteById(boardnum);
 
 	}
 	

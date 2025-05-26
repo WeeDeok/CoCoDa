@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
 import com.CoCoDa.repository.TotalDao;
-import com.CoCoDa.util.ConvertJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,9 +77,6 @@ public class TotalService {
 					
 					salesScales = Math.round(pre_result * 100) / 100.0;
 				
-					System.out.println("salesScales"+salesScales);
-					
-					
 					result.put("salesScales", salesScales);
 				
 				// 예상 성장률
@@ -95,46 +90,46 @@ public class TotalService {
 		// 안정성
 		public HashMap<String, Object> Stability(String sigungu_cd, String sales_divison_s_cd) {
 			// Base
-				HashMap<String, Object> result = new HashMap<>();
-				double variation = 0;		// 변동성
-				double operationYear = 0;	// 운영년수
-				double businessRate = 0;	// 휴 폐업률
+			HashMap<String, Object> result = new HashMap<>();
+			double variation = 0;		// 변동성
+			double operationYear = 0;	// 운영년수
+			double businessRate = 0;	// 휴 폐업률
 			
 			// Logic
-				// 변동성 - 월별 점포수 변동
-					ArrayList<Integer> month_store_cnt	= dao.Variation(sigungu_cd);
-					double sum_var = 0;
-					
-					for (int i = 0; i < month_store_cnt.size()-1; i++) {
-						double var = (double)(month_store_cnt.get(i+1) - month_store_cnt.get(i))/month_store_cnt.get(i) * 100;
-						sum_var += var;
-					}
-					variation = sum_var / month_store_cnt.size();
-					variation = Math.round(variation * 100) / 100.0;
-					
-					result.put("variation", variation);
-					
-				// 운영년수 - -해당지역 점포 평균 운영연수
-					int temp = dao.OperationYear(sigungu_cd, sales_divison_s_cd);
-					
-					operationYear = (double)temp/12;
-					operationYear = Math.round(operationYear * 100) / 100.0;
-					
-					result.put("operationYear",operationYear);
-					
-				// 해당 업소 매출 증감률
-					ArrayList<Long> salesVariable = dao.SalesVariation(sigungu_cd, sales_divison_s_cd);
-					double growth = 0;
-					
-					for(int i = 0; i < salesVariable.size() - 1; i++) {
-						
-						growth += ((double)salesVariable.get(i + 1) - salesVariable.get(i))/salesVariable.get(i);
-						
-					}
-					growth = growth / (salesVariable.size()-1) * 100;
-					growth = Math.round(growth * 100) / 100.0;
-					
-					result.put("growth",growth);
+			// 변동성 - 월별 점포수 변동
+			ArrayList<Integer> month_store_cnt	= dao.Variation(sigungu_cd);
+			double sum_var = 0;
+				
+			for (int i = 0; i < month_store_cnt.size()-1; i++) {
+				double var = (double)(month_store_cnt.get(i+1) - month_store_cnt.get(i))/month_store_cnt.get(i) * 100;
+				sum_var += var;
+			}
+			variation = sum_var / month_store_cnt.size();
+			variation = Math.round(variation * 100) / 100.0;
+			
+			result.put("variation", variation);
+				
+			// 운영년수 - -해당지역 점포 평균 운영연수
+			int temp = dao.OperationYear(sigungu_cd, sales_divison_s_cd);
+			
+			operationYear = (double)temp/12;
+			operationYear = Math.round(operationYear * 100) / 100.0;
+			
+			result.put("operationYear",operationYear);
+			
+			// 해당 업소 매출 증감률
+			ArrayList<Long> salesVariable = dao.SalesVariation(sigungu_cd, sales_divison_s_cd);
+			double growth = 0;
+			
+			for(int i = 0; i < salesVariable.size() - 1; i++) {
+				
+				growth += ((double)salesVariable.get(i + 1) - salesVariable.get(i))/salesVariable.get(i);
+				
+			}
+			growth = growth / (salesVariable.size()-1) * 100;
+			growth = Math.round(growth * 100) / 100.0;
+			
+			result.put("growth", growth);
 					
 			return result;
 		}
