@@ -3,7 +3,6 @@ package com.CoCoDa.controller;
 import com.CoCoDa.entity.BoardEntity;
 import com.CoCoDa.entity.ReplyEntity;
 import com.CoCoDa.service.BoardService;
-import com.CoCoDa.vo.BoardVO;
 import com.CoCoDa.vo.ReplyVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
