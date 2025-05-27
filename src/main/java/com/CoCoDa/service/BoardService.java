@@ -1,12 +1,10 @@
 package com.CoCoDa.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.CoCoDa.entity.BoardEntity;
 import com.CoCoDa.repository.BoardDao;
 import com.CoCoDa.repository.BoardRepository;
-import com.CoCoDa.vo.BoardVO;
 import com.CoCoDa.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

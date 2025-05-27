@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.CoCoDa.mapper.IndexMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class IndexDao {
 	
-	@Autowired
 	private IndexMapper mapper;
 
 	public List<Map<String, Object>> division_middle(String sales_divison_l_cd) {

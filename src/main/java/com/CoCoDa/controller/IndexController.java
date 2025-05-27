@@ -10,9 +10,11 @@ import com.CoCoDa.service.IndexService;
 import com.CoCoDa.vo.IndexVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 public class IndexController {
@@ -21,19 +23,21 @@ public class IndexController {
 	private IndexService service;
 	private DangerDao dao;
 	
-	@GetMapping("seoul_analysis")
-	public String seoul_analysis (Model model) {
-
+	//@GetMapping("/") 추후 결정 (Index 수정할까 말까 고민중)
+	@GetMapping("/home")
+	public String home(Locale locale, Model model) {
+		
 		JSONArray result = dao.bringdanger();
 		
 		model.addAttribute("dangerresult",result);
 		
 		return "analysis";
+
 	}
-	
-	@GetMapping("/")
-	public String home(Locale locale, Model model) {
-		
+
+	@GetMapping("seoul_analysis")
+	public String seoul_analysis (Model model) {
+
 		JSONArray result = dao.bringdanger();
 		
 		model.addAttribute("dangerresult",result);
@@ -52,7 +56,7 @@ public class IndexController {
 
 	}
 	
-	@PostMapping("result")
+	@GetMapping("result")
 	public String location(@RequestBody IndexVO param, Model model) {
 		
 		String target = "result_page";
@@ -101,4 +105,5 @@ public class IndexController {
 		return target;
 
 	}
+
 }
