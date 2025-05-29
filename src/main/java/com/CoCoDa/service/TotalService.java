@@ -16,72 +16,72 @@ public class TotalService {
     private TotalDao dao;
 	
 		public HashMap<String, Object> SalesInfo(ArrayList<String> sigungu_arr) {
-			// Base
-				HashMap<String, Object> result = new HashMap<>();
+			
+			HashMap<String, Object> result = new HashMap<>();
 				
-				List<Map<String, Object>> select_result = new ArrayList<>();
-				int float_pop = 0;
-				int total_sales = 0;
-				int store_cnt = 0;
-				
-			// Logic
-				//
-				for (String sigungu_cd : sigungu_arr) {
-					select_result.add(dao.SalesInfo(sigungu_cd));
-				}	
-				
-				for (Map<String, Object> one : select_result) {
-					float_pop += (int)one.get("TOTAL_POP");
-					store_cnt += (int)one.get("STORE_CNT"); 		
-					total_sales += (int)one.get("TOTAL_SALES");
-				}
-				
-				result.put("total_sales", total_sales);
-				result.put("float_pop", float_pop);
-				result.put("store_cnt", store_cnt);
+			List<Map<String, Object>> select_result = new ArrayList<>();
+			int float_pop = 0;
+			int total_sales = 0;
+			int store_cnt = 0;
+			
+			for (String sigungu_cd : sigungu_arr) {
+				select_result.add(dao.SalesInfo(sigungu_cd));
+			}	
+			
+			for (Map<String, Object> one : select_result) {
+				float_pop += (int)one.get("TOTAL_POP");
+				store_cnt += (int)one.get("STORE_CNT"); 		
+				total_sales += (int)one.get("TOTAL_SALES");
+			}
+			
+			result.put("total_sales", total_sales);
+			result.put("float_pop", float_pop);
+			result.put("store_cnt", store_cnt);
 				
 			return result;
 		}
 		
 		// 성장성
 		public HashMap<String, Object> Growth(String sigungu_cd) {
+			
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			double avgGrowth = 0; 	// 월 별 매출증감률
 			double salesScales = 0;	// 상권 규모
 			double expectSales = 0;	// 예상 성장률
 
-			// Logic
-				// 월별 매출 증감률
-					ArrayList<Long> temp = dao.MonthSales(sigungu_cd);
-			
-					double sum_growth = 0; // 저장변수
+			// 월별 매출 증감률
+			ArrayList<Long> temp = dao.MonthSales(sigungu_cd);
+		
+			double sum_growth = 0; // 저장변수
 					
-					for (int i = 0; i < temp.size() - 1; i++) {
-						
-						long exresult = temp.get(i + 1) - temp.get(i);
-						
-						double growth = ((double)exresult) / temp.get(i) * 100; // 성장률(%)
-						
-						sum_growth += growth;
-					}
-					avgGrowth =  Math.round((sum_growth/(temp.size()-1)) * 100) / 100.0; // 소수점 2자리
-					
-					result.put("avgGrowth", avgGrowth);
-			
-				// 상권 규모
-					long totalSales = dao.TotalSales();
-					
-					long selectSales = temp.get(temp.size()-1);
-					
-					double pre_result = ((double)selectSales / totalSales) * 100;
-					
-					salesScales = Math.round(pre_result * 100) / 100.0;
+			for (int i = 0; i < temp.size() - 1; i++) {
 				
-					result.put("salesScales", salesScales);
+				long exresult = temp.get(i + 1) - temp.get(i);
+						
+				double growth = ((double)exresult) / temp.get(i) * 100; // 성장률(%)
+						
+				sum_growth += growth;
+			
+			}
+			
+			avgGrowth =  Math.round((sum_growth/(temp.size()-1)) * 100) / 100.0; // 소수점 2자리
+					
+			result.put("avgGrowth", avgGrowth);
+			
+			// 상권 규모
+			long totalSales = dao.TotalSales();
 				
-				// 예상 성장률
-					expectSales = selectSales + (long)(selectSales * avgGrowth);
-					result.put("expectSales", expectSales);
+			long selectSales = temp.get(temp.size()-1);
+					
+			double pre_result = ((double)selectSales / totalSales) * 100;
+					
+			salesScales = Math.round(pre_result * 100) / 100.0;
+				
+			result.put("salesScales", salesScales);
+				
+			// 예상 성장률
+			expectSales = selectSales + (long)(selectSales * avgGrowth);
+			result.put("expectSales", expectSales);
 			
 			return result;
 			
@@ -137,28 +137,29 @@ public class TotalService {
 		//	집객력
 		public HashMap<String, Object> Collect(String sigungu_cd) {
 			// Base
-				HashMap<String, Object> result = new HashMap<String, Object>();
-				double floatPop = 0;	// 유동인구
-				double stayPop = 0 ;	// 주거인구 
-				double workerPop = 0; 	// 직장인구
+			HashMap<String, Object> result = new HashMap<String, Object>();
+			double floatPop = 0;	// 유동인구
+			double stayPop = 0 ;	// 주거인구 
+			double workerPop = 0; 	// 직장인구
 				
 			// Logic
-				// 유동인구
-					floatPop = dao.FloatPopulation(sigungu_cd);
-					floatPop = Math.round(floatPop * 100) / 100.0;
+			// 유동인구
+			floatPop = dao.FloatPopulation(sigungu_cd);
+			floatPop = Math.round(floatPop * 100) / 100.0;
 					
-					result.put("floatPop", floatPop);
-				// 주거인구
-					stayPop = dao.StayPopulation(sigungu_cd);
-					stayPop = Math.round(stayPop * 100) / 100.0;
+			result.put("floatPop", floatPop);
+			
+			// 주거인구
+			stayPop = dao.StayPopulation(sigungu_cd);
+			stayPop = Math.round(stayPop * 100) / 100.0;
 					
-					result.put("stayPop", stayPop);
+			result.put("stayPop", stayPop);
 				
-				// 직장인구
-					workerPop = dao.WorkerPopulation(sigungu_cd);
-					workerPop = Math.round(workerPop * 100) / 100.0;
+			// 직장인구
+			workerPop = dao.WorkerPopulation(sigungu_cd);
+			workerPop = Math.round(workerPop * 100) / 100.0;
 					
-					result.put("workerPop", workerPop);
+			result.put("workerPop", workerPop);
 					
 			return result;
 		}
@@ -166,17 +167,18 @@ public class TotalService {
 		// 구매력
 		public HashMap<String, Object> Purchasing(String sigungu_cd) {
 			// Base
-				HashMap<String, Object> result = new HashMap<>();
-				int cnt_price = 0;		//	건당 결제금액
-				int income_level = 0;	//	소비수준
+			HashMap<String, Object> result = new HashMap<>();
+			int cnt_price = 0;		//	건당 결제금액
+			int income_level = 0;	//	소비수준
 						
 			// Logic
-				cnt_price = dao.cntPrice(sigungu_cd);
-				result.put("cnt_price", cnt_price);
+			cnt_price = dao.cntPrice(sigungu_cd);
+			result.put("cnt_price", cnt_price);
 				
-				income_level = dao.incomeLevel(sigungu_cd);
-				result.put("income_level", income_level);
+			income_level = dao.incomeLevel(sigungu_cd);
+			result.put("income_level", income_level);
 				
 			return result;
+
 		}
 	}

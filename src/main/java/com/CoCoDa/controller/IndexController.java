@@ -25,27 +25,28 @@ public class IndexController {
 	
 	//@GetMapping("/") 추후 결정 (Index 수정할까 말까 고민중)
 	@GetMapping("/home")
-	public String home(Locale locale, Model model) {
+	public JSONArray home(Locale locale) {
 		
 		JSONArray result = dao.bringdanger();
 		
-		model.addAttribute("dangerresult",result);
+		//model.addAttribute("dangerresult",result);
 		
-		return "analysis";
+		return result;
 
 	}
 
-	@GetMapping("seoul_analysis")
-	public String seoul_analysis (Model model) {
+	@GetMapping("/seoul_analysis")
+	public JSONArray seoul_analysis (Model model) {
 
 		JSONArray result = dao.bringdanger();
 		
-		model.addAttribute("dangerresult",result);
+		//model.addAttribute("dangerresult",result);
 		
-		return "analysis";
+		return result;
+
 	}
 
-	@GetMapping("middle")
+	@GetMapping("/middle")
 	public JSONArray division_middle(@RequestParam String sales_divison_l_cd) {
 		
 		JSONArray result = null;
@@ -56,11 +57,11 @@ public class IndexController {
 
 	}
 	
-	@GetMapping("result")
-	public String location(@RequestBody IndexVO param, Model model) {
+	@GetMapping("/result")
+	public HashMap<String, Object> location(@RequestBody IndexVO param, Model model) {
 		
-		String target = "result_page";
-		
+		HashMap<String, Object> map = new HashMap<>();
+
 		ArrayList<String> sales_num = new ArrayList<String>(); 	// 상권번호
 		String sigungu_cd = null; // 시군구 코드 
 		String sigungu_nm = null; // 시군구 이름
@@ -71,27 +72,30 @@ public class IndexController {
 		sales_division_nm = service.divisionNm(param.getSales_division_s_cd());
 			
 		HashMap<String, Object> division = service.divisionMap(param.getSales_division_s_cd());
-		for (String string : param.getSales_nm()) {
-			sales_nm = string;
+
+		
+		for (String str : param.getSales_nm()) {
+			sales_nm = str;
 		}
 		
 		if(division != null) {
 			model.addAttribute("division", division);
 		}
 		
-		for (String string : param.getSales_num()) {
-			sales_num.add(string);
+		for (String str : param.getSales_num()) {
+			sales_num.add(str);
 		}
 		
-		for (String string : param.getSigungu_cd()) {
-			sigungu_cd = string;
+		for (String str : param.getSigungu_cd()) {
+			sigungu_cd = str;
 		}
 		
 		
-		for (String string : param.getSigungu_nm()) {
-			sigungu_nm = string;
+		for (String str : param.getSigungu_nm()) {
+			sigungu_nm = str;
 		}
 		
+		/*
 		model.addAttribute("cx", param.getCx());
 		model.addAttribute("cy", param.getCy());
 		model.addAttribute("sales_num", sales_num);
@@ -101,8 +105,19 @@ public class IndexController {
 		model.addAttribute("sales_division_s_cd", param.getSales_division_s_cd());
 		model.addAttribute("division_nm", sales_division_nm);
 		model.addAttribute("sales_nm", sales_nm);
-			
-		return target;
+		*/
+
+		map.put("cx", param.getCx());
+		map.put("cy", param.getCy());
+		map.put("sales_num", sales_num);
+		map.put("sigungu_cd",sigungu_cd);
+		map.put("sigungu_nm", sigungu_nm);
+		map.put("address",param.getAddress());
+		map.put("sales_division_s_cd", param.getSales_division_s_cd());
+		map.put("division_nm", sales_division_nm);
+		map.put("sales_nm", sales_nm);
+
+		return map;
 
 	}
 

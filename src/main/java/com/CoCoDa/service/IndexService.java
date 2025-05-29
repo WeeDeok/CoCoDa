@@ -17,6 +17,7 @@ public class IndexService {
 	private IndexDao dao;
 	
 	public JSONArray division_middle(String sales_divison_l_cd) {
+		
 		// Base
 		List<Map<String, Object>> select_result = null;
 		
@@ -30,16 +31,19 @@ public class IndexService {
 		}
 		
 		return result;
+
 	}
 
 	public HashMap<String, Object> divisionMap(String sales_division_s_cd) {
+
 		// Base
-		 	HashMap<String, Object> result = null;
+		HashMap<String, Object> result = null;
 		 
 		 //Logic
-		 	result = dao.divisionMap(sales_division_s_cd);
+		result = dao.divisionMap(sales_division_s_cd);
 		 	
 		return result;
+
 	}
 
 	public String divisionNm(String sales_division_s_cd) {
@@ -49,6 +53,7 @@ public class IndexService {
 		result = dao.divisionNm(sales_division_s_cd);
 		
 		return result;
+		
 	}
 	
 }

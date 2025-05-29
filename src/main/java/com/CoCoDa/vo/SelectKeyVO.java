@@ -1,6 +1,6 @@
 package com.CoCoDa.vo;
 
-public class selectKeyVO {
+public class SelectKeyVO {
 
 	private int allpop1;
 	private int allpop2;
@@ -31,10 +31,10 @@ public class selectKeyVO {
 	private int sunpop;
 	private int fixed_month;
 
-	public selectKeyVO() {
+	public SelectKeyVO() {
 	}
 
-	public selectKeyVO(int allpop1, int allpop2, int allpop3, int allpop4, int manpop, int womanpop, int agepop10,
+	public SelectKeyVO(int allpop1, int allpop2, int allpop3, int allpop4, int manpop, int womanpop, int agepop10,
 			int agepop20, int agepop30, int agepop40, int agepop50, int agepop60, int timepop1, int timepop2,
 			int timepop3, int timepop4, int timepop5, int timepop6, int onweekpop, int weekendpop, int monpop,
 			int tuepop, int wedpop, int thrpop, int fripop, int satpop, int sunpop, int fixed_month) {
