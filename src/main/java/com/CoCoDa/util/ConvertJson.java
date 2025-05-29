@@ -9,7 +9,8 @@ import org.json.JSONObject;
 public class ConvertJson {
 
 	// List<Map<String, Object>> => JSONArray
-	public static JSONArray convertMapJsonArray(List<Map<String, Object>> select_result) {
+	public JSONArray convertMapJsonArray(List<Map<String, Object>> select_result) {
+
 		// Base
 		JSONArray result = new JSONArray();
 		JSONObject obj = new JSONObject();
@@ -30,11 +31,14 @@ public class ConvertJson {
 		}
 
 		return result;
+
 	}
 
 	// Map<String, Object>> => JSON
-	public static JSONObject getJsonStringFromMap(Map<String, Object> map) {
+	public JSONObject getJsonStringFromMap(Map<String, Object> map) {
+
 		JSONObject jsonObject = new JSONObject();
+
 		for (Map.Entry<String, Object> entry : map.entrySet()) {
 
 			String key = entry.getKey();
@@ -44,11 +48,13 @@ public class ConvertJson {
 		}
 
 		return jsonObject;
+
 	}
 
 	// JSON => MAP<String, Object>
 	//@SuppressWarnings("unchecked")
-	public static Map<String, Object> getMapFromJsonObject(JSONObject jsonObj) {
+	public Map<String, Object> getMapFromJsonObject(JSONObject jsonObj) {
+
 		Map<String, Object> map = null;
 
 		try {
@@ -61,6 +67,7 @@ public class ConvertJson {
 		} 
 
 		return map;
+
 	}
 
 }

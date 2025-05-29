@@ -1,5 +1,12 @@
 package com.CoCoDa.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class BoardVO {
 
 	private int boardnum;					//글번호
@@ -23,58 +30,4 @@ public class BoardVO {
 		this.hits = hits;
 	}
 
-	public int getBoardnum() {
-		return boardnum;
-	}
-
-	public void setBoardnum(int boardnum) {
-		this.boardnum = boardnum;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getInputdate() {
-		return inputdate;
-	}
-
-	public void setInputdate(String inputdate) {
-		this.inputdate = inputdate;
-	}
-
-	public int getHits() {
-		return hits;
-	}
-
-	public void setHits(int hits) {
-		this.hits = hits;
-	}
-
-	@Override
-	public String toString() {
-		return "board [boardnum=" + boardnum + ", id=" + id + ", title=" + title + ", content=" + content
-				+ ", inputdate=" + inputdate + ", hits=" + hits + "]";
-	}
-	
 }
