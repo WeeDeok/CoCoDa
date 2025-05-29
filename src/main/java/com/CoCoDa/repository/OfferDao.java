@@ -15,11 +15,12 @@ public class OfferDao {
 
 	private OfferMapper mapper;
 	
-	public JSONArray selectoffer(int sigungu_cd, String sales_divison_s_cd) {
+	public ArrayList<HashMap<String, Object>> selectoffer(int sigungu_cd, String sales_divison_s_cd) {
 		
-		JSONArray result = new JSONArray();
-		int count = 0;
+		//JSONArray result = new JSONArray();
+		ArrayList<HashMap<String, Object>> result = new ArrayList<>();
 		HashMap<String,String> datamap = new HashMap<>();
+		int count = 0;
 		
 		String data = "sales";
 		datamap.put("data", data);
@@ -40,7 +41,8 @@ public class OfferDao {
 			}
 			
 			for(Map<String,Object> t : temp) {
-				JSONObject obj = new JSONObject();
+				//JSONObject obj = new JSONObject();
+				HashMap<String, Object> obj = new HashMap<>();
 				
 				for (Map.Entry<String, Object> entry : t.entrySet()) {
 					if (entry.getKey().equals("TEMPMONTH")) {
@@ -56,13 +58,15 @@ public class OfferDao {
 					}
 				}
 				
-				result.put(count, obj);
+				result.add(count, obj);
 				count++;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return result;
+		
 	}
 }
