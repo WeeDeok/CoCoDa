@@ -7,18 +7,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class userVO {
+public class UserVO {
 	
 	private String userid;
     private String userpw;
     private String username;
     private String useremail;
     
-	public userVO() {
+	public UserVO() {
 		super();
 	}
 
-	public userVO(String userid, String userpw, String username, String useremail) {
+	public UserVO(String userid, String userpw, String username, String useremail) {
 		super();
 		this.userid = userid;
 		this.userpw = userpw;
