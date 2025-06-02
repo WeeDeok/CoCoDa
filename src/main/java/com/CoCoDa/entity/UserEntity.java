@@ -3,6 +3,7 @@ package com.CoCoDa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
 @Table(name = "USER") // 실제 테이블 명이 다르면 변경
 @Getter

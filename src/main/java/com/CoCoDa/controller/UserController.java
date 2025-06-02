@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.CoCoDa.entity.UserEntity;
 import com.CoCoDa.service.UserService;
 import com.CoCoDa.vo.UserVO;
 
@@ -15,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 
 	@Autowired
-	UserService service;
+	private UserService service;
 	
 	@GetMapping("/userlogin")
 	public String userlogin() {
@@ -28,28 +30,32 @@ public class UserController {
 	}
 	
 	@PostMapping("/userlogin")
-	public String userloginForm(UserVO user, HttpSession session) {
+	public String userloginForm(@RequestBody UserEntity user, HttpSession session) {
 		
 		String id = null;
 		String pw = null;
 		
-		UserVO us = service.userlogin(user);
+		UserEntity us = service.userlogin(user);
 
-		id = user.getUserid();
-		pw = user.getUserpw();
-		
+		id = us.getUserid();
+		pw = us.getUserpw();
 
-		if(us!=null) {
+		if(!"".equals(us.getUserid()) || us.getUserid() != null) {
 			
-			if(id.equals(us.getUserid())&&pw.equals(us.getUserpw())) {
+			if(id.equals(us.getUserid()) && pw.equals(us.getUserpw())) {
+
 				if(id.equals("admin")) {
-					System.out.println("adminset");
+					
 					session.setAttribute("admin", id);
+
 				} else {
-				session.setAttribute("userid", id);
+					
+					session.setAttribute("userid", id);
+
 				}
 				
 				return "redirect:/";
+
 			}
 				
 		}
@@ -68,35 +74,53 @@ public class UserController {
 	}
 	
 	@PostMapping("userjoin")
-	public String userjoin(
-			UserVO user,
-			Model model) {
-		 System.out.println(user);
-		int result = service.userjoin(user);
+	public String userjoin(@RequestBody UserEntity user, Model model) {
+		
+		int result = 0;
+
+		try {
+
+			UserEntity entity = service.userjoin(user);
+			result = (entity == null) ? 0 : 1;
+
+		} catch(Exception e) {
+
+			e.printStackTrace();
+
+		}
+
 		if (result != 1) {
 			
-			model.addAttribute("errorMsg", "媛��엯 �떎�뙣");
+			model.addAttribute("errorMsg", "Error");
+
 			return "customer/joinForm";
 
 		}
+
 		model.addAttribute("id", user.getUserid());
 
 		return "customer/joinComplete";
+
 	}
 	
 	@GetMapping("checkId")
-	public int searchUserid(String userid, Model model) {
-		int numm=0;
-		numm=service.searchUserid(userid);
-		System.out.println(numm);
+	public int searchUserid(String userid) {
+		
+		int numm = 0;
+
+		numm = service.searchUserid(userid);
+		
 		return numm;
+
 	}
 	
 	@GetMapping("userJoin")
-	public int joinUser(UserVO user, Model model) {
+	public int joinUser(UserVO user) {
+		
 		int number = 0;
-		System.out.println(user);
+		
 		number = service.joinUser(user);
+
 		return number;
 
 	}

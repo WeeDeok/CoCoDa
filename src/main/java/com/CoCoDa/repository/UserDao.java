@@ -1,8 +1,6 @@
 package com.CoCoDa.repository;
 
-import org.apache.ibatis.session.SqlSession;
 import com.CoCoDa.vo.UserVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.CoCoDa.mapper.UserMapper;
@@ -46,6 +44,7 @@ public class UserDao {
 		number = mapper.joinUser(user);
 		
 		return number;
-		
+
 	}
+	
 }
