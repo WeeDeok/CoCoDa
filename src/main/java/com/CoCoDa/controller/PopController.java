@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PopController {
+	
 	@Autowired
-	PopDao dao;
+	private PopDao dao;
 	
 	@GetMapping("selectstay")
 	public ArrayList<SelectKeyVO> selectstay(int sigungu_cd) {
@@ -68,5 +69,5 @@ public class PopController {
 		return result;
 
 	}
-	
+
 }
