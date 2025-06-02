@@ -15,6 +15,7 @@ public class IndexService {
 	
 	@Autowired
 	private IndexDao dao;
+	private ConvertJson convertJson;
 	
 	public JSONArray division_middle(String sales_divison_l_cd) {
 		
@@ -27,7 +28,7 @@ public class IndexService {
 		select_result = dao.division_middle(sales_divison_l_cd);
 		
 		if(select_result != null) {
-			result = ConvertJson.convertMapJsonArray(select_result);
+			result = convertJson.convertMapJsonArray(select_result);
 		}
 		
 		return result;
