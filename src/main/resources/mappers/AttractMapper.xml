@@ -5,47 +5,47 @@
 <mapper namespace="com.CoCoDa.mapper.AttractMapper">
 
 	<select id="selectattraction" parameterType="HashMap" resultType="HashMap">
-		<![CDATA[
-					SELECT 
-						GOVERNMENT,
-						BANK,
-						BHOSPITAL,
-						SHOSPITAL,
-						PHAR,
-						KINDER,
-						ELEMENTARY,
-						ELE_POP,
-						MIDDLE,
-						MID_POP,
-						HIGH,
-						HIGH_POP,
-						UNIVERSITY,
-						UNI_POP,
-						DEPARTMENT,
-						MARKET,
-						THEATER,
-						HOTEL,
-						TERMINAL
+		
+		SELECT 
+			GOVERNMENT,
+			BANK,
+			BHOSPITAL,
+			SHOSPI	TAL,
+			PHAR,
+			KINDER,
+			ELEMENTARY,
+			ELE_POP,
+			MIDDLE,
+			MID_POP,
+			HIGH,
+			HIGH_POP,
+			UNIVERSITY,
+			UNI_POP,
+			DEPARTMENT,
+			MARKET,
+			THEATER,
+			HOTEL,
+			TERMINAL
+		FROM 
+			ATTRACTION_TB
+		WHERE 
+			SIGUNGU_CD = #{sigungu_cd}
+			AND FIXED_DATE IN (
+				SELECT 
+					FIXED_DATE
+				FROM (
+					SELECT DISTINCT 
+						FIXED_DATE
 					FROM 
 						ATTRACTION_TB
-					WHERE 
-						SIGUNGU_CD = #{sigungu_cd}
-						AND FIXED_DATE IN (
-							SELECT 
-								FIXED_DATE
-							FROM (
-								SELECT DISTINCT 
-									FIXED_DATE
-								FROM 
-									ATTRACTION_TB
-								ORDER BY 
-									FIXED_DATE DESC
-							)
-							WHERE 
-								ROWNUM < 5
-						);
+					ORDER BY 
+						FIXED_DATE DESC
+				)
+				WHERE 
+				<![CDATA[	ROWNUM < 5]]>
+			);
 
-	]]>
+	
 	</select>
 
 	<select id = "selectsubway" parameterType="HashMap" resultType="HashMap">
