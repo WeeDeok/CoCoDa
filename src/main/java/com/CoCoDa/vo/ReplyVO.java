@@ -29,7 +29,6 @@ public class ReplyVO {
 	}
 
 	public Object getContent() {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'getContent'");
 	}
 	

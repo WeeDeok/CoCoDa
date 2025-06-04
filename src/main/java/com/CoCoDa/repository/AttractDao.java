@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.CoCoDa.mapper.AttractMapper;
