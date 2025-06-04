@@ -1,15 +1,15 @@
 spring:
   application:
     name: CoCoDa
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
-      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  #autoconfigure:
+    #exclude:
+    #  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    #  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: //localhost:3306/CoCoDa_DB
-    username: ADMIN
-    password: 1541
+    url: jdbc:mysql://172.17.0.2:3306/CoCoDa_DB?useSSL=false&allowPublicKeyRetrieval=true
+    username: 
+    password: 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:

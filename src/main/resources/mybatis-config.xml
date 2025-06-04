@@ -4,12 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	 <typeAliases>
-
+		<typeAlias alias="Selectkey" 	type="com.CoCoDa.vo.SelectKeyVO"/>
+		<typeAlias alias="Selectincome" type="com.CoCoDa.cocoda.vo.SelectIncomeVO"/>
+		<typeAlias alias="reply" type="com.CoCoDa.vo.ReplyVO"/>
+		<typeAlias alias="user" type="com.CoCoDa.vo.UserVO"/>
+		<typeAlias alias="board" type="com.CoCoDa.vo.BoardVO"/>
 		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/AttractMapper.xml"/>
+		<mapper resource="mapper/BoardMapper.xml"/>
+		<mapper resource="mapper/DangerMapper.xml"/>
+		<mapper resource="mapper/IndexMapper.xml"/>
+		<mapper resource="mapper/NoticeBoardMapper.xml"/>
+		<mapper resource="mapper/OfferMapper.xml"/>
+		<mapper resource="mapper/PopMapper.xml"/>
+		<mapper resource="mapper/QaboardMapper.xml"/>
 		<mapper resource="mapper/TotalMapper.xml"/>
+		<mapper resource="mapper/UserMapper.xml"/>
 	</mappers>
 </configuration>
 

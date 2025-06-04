@@ -6,7 +6,7 @@
 <mapper namespace="com.CoCoDa.mapper.qaboardMapper">
 
 <!-- 게시글 읽기 -->
-	<select id="readingBoard" resultType="board" parameterType="string">
+	<select id="readingBoard" resultType="HashMap" parameterType="string">
 
 		SELECT
 			BOARDNUM
@@ -24,7 +24,7 @@
 
 	</select>
 	
-	<select id="readingEachBoard" resultType="board" parameterType="int" >
+	<select id="readingEachBoard" resultType="HashMap" parameterType="int" >
 
 		SELECT 
 			BOARDNUM
@@ -38,7 +38,7 @@
 	
 	</select>
 
-	<insert id="insertboard" parameterType="board">
+	<insert id="insertboard" parameterType="HashMap">
 
 		INSERT INTO QABOARD (
 			BOARDNUM
@@ -79,7 +79,7 @@
 	</delete>
 	
 	<!-- 글 수정 -->
-	<update id="updateBoard" parameterType="board">
+	<update id="updateBoard" parameterType="HashMap">
 
 		UPDATE
 			QABOARD
@@ -104,7 +104,7 @@
 		</if>		
 	</select>	
 	
-	<insert id="insertReply" parameterType="reply">
+	<insert id="insertReply" parameterType="HashMap">
 
 		INSERT INTO
 			QAREPLY(
@@ -121,7 +121,7 @@
 			
 	</insert>
 			
-	<select id="listReply" parameterType="int" resultType="reply">
+	<select id="listReply" parameterType="int" resultType="HashMap">
 		
 		SELECT
 			REPLYNUM
@@ -138,7 +138,7 @@
 	</select>
 	
 	<!-- 리플삭제 -->
-	<delete id="deleteReply" parameterType="reply">
+	<delete id="deleteReply" parameterType="HashMap">
 		
 		DELETE FROM
 			QAREPLY
@@ -150,7 +150,7 @@
 	</delete>
 	
 	<!-- 리플 수정 -->
-	<update id="updateReply" parameterType="reply">
+	<update id="updateReply" parameterType="HashMap">
 		UPDATE
 			QAREPLY
 		SET

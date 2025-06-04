@@ -24,6 +24,9 @@ public class ReplyEntity {
     @Column(name = "ID")
     private String id;
 
+    @Column(name = "TITLE")
+    private String title;
+
     @Column(name = "TEXT")
     private String text;
 

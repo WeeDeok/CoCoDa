@@ -5,7 +5,7 @@
   
   <mapper namespace="com.CoCoDa.mapper.userMapper">
   
-  <select id="userlogin" resultType="user" parameterType="user">
+  <select id="userlogin" resultType="HashMap" parameterType="HashMap">
 
 	SELECT
 		 USERID
@@ -20,7 +20,7 @@
 	</select>
   
 
-	<insert id="userjoin" parameterType="user">
+	<insert id="userjoin" parameterType="HashMap">
 
 		INSERT INTO USER'S (
 			USERID
@@ -45,7 +45,7 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="joinUser" parameterType="user">
+	<insert id="joinUser" parameterType="HashMap">
 
 		INSERT INTO USERS (
 			USERID

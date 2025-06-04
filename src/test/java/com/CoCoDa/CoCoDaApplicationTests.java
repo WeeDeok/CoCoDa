@@ -14,9 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class CoCoDaApplicationTests {
-/*
+
 	@Autowired
-    //private BoardRepository boardRepository;
+    private BoardRepository boardRepository;
 
     @Test
     void boardSaveAndFindTest() {
@@ -40,5 +40,5 @@ class CoCoDaApplicationTests {
         assertThat(found.getContent()).isEqualTo("테스트 내용입니다.");
 
     }
-*/
+
 }

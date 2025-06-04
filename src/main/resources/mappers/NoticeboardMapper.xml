@@ -6,7 +6,7 @@
 <mapper namespace="com.CoCoDa.mapper.noticeboardMapper">
 
 	<!-- 게시글 읽기 -->
-	<select id="readingBoard" resultType="board" parameterType="string">
+	<select id="readingBoard" resultType="HashMap" parameterType="string">
 
 		SELECT BOARDNUM
 			 , ID
@@ -21,7 +21,7 @@
 
 	</select>
 	
-	<select id="readingEachBoard" resultType="board" parameterType="int" >
+	<select id="readingEachBoard" resultType="HashMap" parameterType="int" >
 
 		SELECT BOARDNUM
 			 , ID
@@ -35,7 +35,7 @@
 	
 	</select>
 
-	<insert id="insertboard" parameterType="board">
+	<insert id="insertboard" parameterType="HashMap">
 
 		INSERT INTO NOTICEBOARD (
 
@@ -72,7 +72,7 @@
 	</delete>
 	
 	<!-- 글 수정 -->
-	<update id="updateBoard" parameterType="board">
+	<update id="updateBoard" parameterType="HashMap">
 
 		UPDATE NOTICEBOARD
 		   SET TITLE = #{title}

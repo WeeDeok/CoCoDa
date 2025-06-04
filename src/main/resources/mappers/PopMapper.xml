@@ -58,10 +58,10 @@
 					ROWNUM < 5
 					]]>
 				</when>
-
+			</choose>
 	</select>
 
-	<select id="selectstay" resultType="Selectkey" parameterType="HashMap">
+	<select id="selectstay" resultType="HashMap" parameterType="HashMap">
 
 		SELECT
 				SUM(SPOP) AS ALLPOP1
@@ -81,7 +81,7 @@
 
 	</select>
 
-	<select id="selectworker" resultType="Selectkey" parameterType="HashMap">
+	<select id="selectworker" resultType="HashMap" parameterType="HashMap">
 
 	SELECT
       	  SUM(WPOP)                                    AS ALLPOP1
@@ -101,7 +101,7 @@
 
 	</select>
 
-	<select id="selectfloat" resultType="Selectkey" parameterType="HashMap">
+	<select id="selectfloat" resultType="HashMap" parameterType="HashMap">
 
 		SELECT
 			SUM(fpop) AS allpop1,
@@ -136,7 +136,7 @@
 
 	</select>
 
-	<select id="selectincome" resultType="Selectincome" parameterType="HashMap">
+	<select id="selectincome" resultType="HashMap" parameterType="HashMap">
 
 		SELECT MONTH_INCOME
 		     , INCOMERATE
@@ -155,7 +155,7 @@
 
 	</select>
 	
-	<select id="selectfloat2" parameterType="HashMap" resultType="Selectkey">
+	<select id="selectfloat2" parameterType="HashMap" resultType="HashMap">
 			
 		SELECT
 			SUM(fpop) AS allpop1,

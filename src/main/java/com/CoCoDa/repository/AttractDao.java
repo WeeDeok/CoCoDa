@@ -13,6 +13,7 @@ import com.CoCoDa.mapper.AttractMapper;
 @Repository
 public class AttractDao {
 
+	@Autowired
 	private AttractMapper mapper;
 	
 	public JSONArray selectattraction(int sigungu_cd) {
