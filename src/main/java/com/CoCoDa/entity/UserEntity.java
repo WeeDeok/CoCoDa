@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Entity
+@Entity(name = "UserEntity")
 @Table(name = "USER") // 실제 테이블 명이 다르면 변경
 @Getter
 @Setter
