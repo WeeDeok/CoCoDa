@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.CoCoDa.mapper.userMapper">
+  <mapper namespace="com.CoCoDa.mapper.UserMapper">
   
   <select id="userlogin" resultType="HashMap" parameterType="HashMap">
 
@@ -11,18 +11,18 @@
 		 USERID
 		 ,USERPW
 	FROM
-		USERS 
+		USER
 	WHERE
-		USERID # {userid}
+		USERID = #{userid}
 	AND
-		USERPW=#{userpw}
+		USERPW = #{userpw}
 
 	</select>
-  
+   
 
 	<insert id="userjoin" parameterType="HashMap">
 
-		INSERT INTO USER'S (
+		INSERT INTO USER (
 			USERID
 			, USWERPW
 			, USERNAME
@@ -40,14 +40,14 @@
   <!-- ID로 회원 정보 검색 -->
 	<select id="searchUserid" resultType="String">
 
-		SELECT USERID FROM USERS WHERE USERID = #{userid}
+		SELECT USERID FROM USER WHERE USERID = #{userid}
 
 	</select>
 	
 	<!-- 회원가입 -->
 	<insert id="joinUser" parameterType="HashMap">
 
-		INSERT INTO USERS (
+		INSERT INTO USER (
 			USERID
 			, USERPW
 			, USERNAME

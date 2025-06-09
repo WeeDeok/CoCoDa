@@ -12,16 +12,16 @@
 		
 	</typeAliases>
 	<mappers>
-		<mapper resource="mapper/AttractMapper.xml"/>
-		<mapper resource="mapper/BoardMapper.xml"/>
-		<mapper resource="mapper/DangerMapper.xml"/>
-		<mapper resource="mapper/IndexMapper.xml"/>
-		<mapper resource="mapper/NoticeBoardMapper.xml"/>
-		<mapper resource="mapper/OfferMapper.xml"/>
-		<mapper resource="mapper/PopMapper.xml"/>
-		<mapper resource="mapper/QaboardMapper.xml"/>
-		<mapper resource="mapper/TotalMapper.xml"/>
-		<mapper resource="mapper/UserMapper.xml"/>
+		<mapper resource="mappers/AttractMapper.xml"/>
+		<mapper resource="mappers/BoardMapper.xml"/>
+		<mapper resource="mappers/DangerMapper.xml"/>
+		<mapper resource="mappers/IndexMapper.xml"/>
+		<mapper resource="mappers/NoticeBoardMapper.xml"/>
+		<mapper resource="mappers/OfferMapper.xml"/>
+		<mapper resource="mappers/PopMapper.xml"/>
+		<mapper resource="mappers/QaboardMapper.xml"/>
+		<mapper resource="mappers/TotalMapper.xml"/>
+		<mapper resource="mappers/UserMapper.xml"/>
 	</mappers>
 </configuration>
 

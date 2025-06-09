@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.CoCoDa.entity.BoardEntity;
 import com.CoCoDa.entity.UserEntity;
+import com.CoCoDa.mapper.UserMapper;
 import com.CoCoDa.repository.BoardRepository;
 import com.CoCoDa.repository.UserRepository;
 
@@ -22,6 +23,9 @@ class CoCoDaApplicationTests {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Test
     void boardSaveAndFindTest() {
@@ -79,11 +83,18 @@ class CoCoDaApplicationTests {
                 .useremail("test@test.net")
                 .build();
 
+        UserEntity saved = userRepository.save(user);
+
         //when
         UserEntity found = userRepository.findByUserIdAndUserPw(user.getUserid(), user.getUserpw());
+        String userId = userMapper.searchUserid(user.getUserid());
 
         //then
-        assertThat(found.getUserid()).isEqualTo(user.getUserid());
+        assertThat(found.getUserid()).isEqualTo(saved.getUserid());
+        
+        System.out.println("HERE found " + found.toString());
+        System.out.println("HERE saved " + saved.toString());
+        System.out.println("HERE mapper " + userId);
 
     }
 
