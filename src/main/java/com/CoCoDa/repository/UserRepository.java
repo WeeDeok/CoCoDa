@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String>  {
     
-    @Query("SELECT u FROM UserEntity u WHERE u.userid = :userId AND u.userpw = :userPw")
+    //@Query("SELECT u FROM UserEntity u WHERE u.userid = :userId AND u.userpw = :userPw")
+    @Query(value = "SELECT * FROM USER WHERE userid = :userId AND userpw = :userPw", nativeQuery = true)
     UserEntity findByUserIdAndUserPw(@Param(value = "userId") String userId, @Param(value = "userPw") String userPw);
 
 }

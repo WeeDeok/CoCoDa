@@ -5,7 +5,7 @@
 <configuration>
 	 <typeAliases>
 		<typeAlias alias="Selectkey" 	type="com.CoCoDa.vo.SelectKeyVO"/>
-		<typeAlias alias="Selectincome" type="com.CoCoDa.cocoda.vo.SelectIncomeVO"/>
+		<typeAlias alias="Selectincome" type="com.CoCoDa.vo.SelectIncomeVO"/>
 		<typeAlias alias="reply" type="com.CoCoDa.vo.ReplyVO"/>
 		<typeAlias alias="user" type="com.CoCoDa.vo.UserVO"/>
 		<typeAlias alias="board" type="com.CoCoDa.vo.BoardVO"/>
