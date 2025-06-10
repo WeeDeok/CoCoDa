@@ -85,8 +85,6 @@ class CoCoDaApplicationTests {
 
         UserEntity saved = userRepository.save(user);
 
-        userRepository.flush();
-
         //when
         UserEntity found = userRepository.findByUserIdAndUserPw(user.getUserid(), user.getUserpw());
         String userId = userMapper.searchUserid(user.getUserid());

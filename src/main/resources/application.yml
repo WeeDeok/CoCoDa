@@ -7,9 +7,9 @@ spring:
     #  - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/CoCoDa_DB?useSSL=false&allowPublicKeyRetrieval=true
-    username: 
-    password: 
+    url: jdbc:mysql://''/''?useSSL=false&allowPublicKeyRetrieval=true
+    username: ''
+    password: ''
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
@@ -17,9 +17,12 @@ spring:
         show-sql: true
         format-sql: true
     hibernate:
-      ddl-auto: create-drop # 실서버는 validate로 재설정 필요
+      ddl-auto: create # 실서버는 validate로 재설정 필요
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
 mybatis:
+  #config-location: classpath:mybatis-config.xml
   configuration:
     multiple-result-sets-enabled: false
     map-underscore-to-camel-case: true
