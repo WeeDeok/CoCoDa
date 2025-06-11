@@ -90,11 +90,18 @@ class CoCoDaApplicationTests {
         String userId = userMapper.searchUserid(user.getUserid());
 
         //then
+        assertThat(found).isNotNull();
         assertThat(found.getUserid()).isEqualTo(saved.getUserid());
         
         System.out.println("HERE found " + found.toString());
         System.out.println("HERE saved " + saved.toString());
         System.out.println("HERE mapper " + userId);
+
+        userRepository.delete(found);
+
+        UserEntity foundafdel = userRepository.findById(user.getUserid()).orElseThrow(() -> new RuntimeException("User Not Found"));;
+
+        System.out.println("Must Not To Reach Here " + foundafdel.getUserid());
 
     }
 
