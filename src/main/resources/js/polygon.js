@@ -75,7 +75,6 @@
 									// 다각형의 채우기 옵션을 변경
 										polygon.setOptions(mouseoverOption);
 										
-										
 									});
 									
 									kakao.maps.event.addListener(polygon, 'click' , function() {
@@ -86,18 +85,19 @@
 										kakao.maps.event.addListener(searchmarker, 'mouseout', function() {
 											polygon.setOptions(mouseoutOption);
 										});
+
 									});
 									
-									kakao.maps.event.addListener(polygon, 'mouseout', function() { 
+										kakao.maps.event.addListener(polygon, 'mouseout', function() { 
 
 										// 다각형의 채우기 옵션을 변경
 										polygon.setOptions(mouseoutOption);
+
 									}); 
 								}	
 							});
 						}
 					});
-					
 				});
 			});
 		});
