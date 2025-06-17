@@ -4,7 +4,8 @@ import java.util.HashMap;
 
 public class Calculate {
     
-    private final int total = 10;
+    private static final int total = 10;
+    private static final String salesScales = "salesScales";
     
     public HashMap<String, Double> getTotalResult(HashMap<String, Double> response) {
 
@@ -14,12 +15,15 @@ public class Calculate {
 
             switch (key) {
 
-                case "salesScales" : 
+                case salesScales : 
 
-                    result.put("salesScales", getSalesScales(value));
+                    result.put(salesScales, getSalesScales(value));
 
                     break;
-
+                
+                default : 
+                    
+                    break;
                 
             }
 
