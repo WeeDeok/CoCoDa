@@ -2,11 +2,10 @@ package com.CoCoDa.util;
 
 import java.util.HashMap;
 
+import com.CoCoDa.Constant.Constant;
+
 public class Calculate {
-    
-    private static final int total = 10;
-    private static final String salesScales = "salesScales";
-    
+        
     public HashMap<String, Double> getTotalResult(HashMap<String, Double> response) {
 
         HashMap<String, Double> result = new HashMap<>();
@@ -15,10 +14,10 @@ public class Calculate {
 
             switch (key) {
 
-                case salesScales : 
+                case Constant.SALES_SCALES : 
 
-                    result.put(salesScales, getSalesScales(value));
-
+                    result.put(Constant.SALES_SCALES, getSalesScales(value));
+                    
                     break;
                 
                 default : 
@@ -36,7 +35,7 @@ public class Calculate {
     private double getSalesScales (double param) {
 
         double compare_salesScales = 20.0;
-        double result_salesScales = Math.floor(param * total / compare_salesScales);
+        double result_salesScales = Math.floor(param * Constant.TOTAL_CALC / compare_salesScales);
 
         if(result_salesScales >= 10){
 
