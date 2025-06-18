@@ -1,6 +1,6 @@
 package com.CoCoDa.Constant;
 
-public abstract class Constant {
+public final class Constant {
     
     public static final String SALES_SCALES = "salesScales";
     public static final String AVG_GROWTH = "avgGrowth";
