@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.CoCoDa.Enum.Day;
 import com.CoCoDa.entity.BoardEntity;
 import com.CoCoDa.entity.UserEntity;
 import com.CoCoDa.mapper.UserMapper;
@@ -102,6 +103,18 @@ class CoCoDaApplicationTests {
         UserEntity foundafdel = userRepository.findById(user.getUserid()).orElseThrow(() -> new RuntimeException("User Not Found"));;
 
         System.out.println("Must Not To Reach Here " + foundafdel.getUserid());
+
+    }
+
+    @Test
+    void callEnumTest() {
+
+        System.out.println(Day.MONDAY);
+        System.out.println(Day.MONDAY == Day.MONDAY);
+        System.out.println(Day.MONDAY == Day.FRIDAY);
+        System.out.println(Day.MONDAY.getDay());
+        System.out.println(Day.MONDAY.getweekendYn().equals(Day.FRIDAY.getweekendYn()));
+        System.out.println(Day.MONDAY.getweekendYn().equals(Day.SUNDAY.getweekendYn()));
 
     }
 

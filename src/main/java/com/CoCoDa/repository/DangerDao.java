@@ -20,8 +20,6 @@ public class DangerDao {
 		
 		try {
 			
-			
-			
 			ArrayList<HashMap<String,String>> result = mapper.bringdanger();
 			
 			for (HashMap<String,String> t : result) {
@@ -37,7 +35,7 @@ public class DangerDao {
 		}
 		
 		return array;
+		
 	}
-	
 	
 }
