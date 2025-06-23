@@ -10,17 +10,7 @@
     	   DANGER_CD,
 		   DANGER_POINT
 	  FROM DANGER_TB
-	 WHERE FIXED_DATE =
-						(
-							SELECT FIXED_DATE
-							FROM
-								 (
-								 	SELECT FIXED_DATE, ROWNUM
-								 	  FROM DANGER_TB
-								 	 ORDER BY FIXED_DATE DESC
-								 )
-							WHERE ROWNUM = 1
-						)
+	 WHERE FIXED_DATE =(SELECT MAX(FIXED_DATE) FROM DANGER_TB)
 
 </select>
 
