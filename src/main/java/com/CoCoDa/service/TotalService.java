@@ -9,6 +9,16 @@ import com.CoCoDa.repository.TotalDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.UnitValue;
+
+import java.io.ByteArrayOutputStream;
+
 @Service
 public class TotalService {
 
@@ -180,5 +190,69 @@ public class TotalService {
 				
 			return result;
 
+		}
+
+		// PDF 보고서 생성
+		public byte[] generatePdfReport(String sigungu_cd, String sales_divison_s_cd, List<String> fields) throws Exception {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			PdfWriter writer = new PdfWriter(baos);
+			PdfDocument pdfDoc = new PdfDocument(writer);
+			Document document = new Document(pdfDoc);
+
+			// 제목
+			document.add(new Paragraph("시군구 보고서").setTextAlignment(TextAlignment.CENTER).setFontSize(20));
+
+			// 데이터 조회
+			HashMap<String, Object> growth = Growth(sigungu_cd);
+			HashMap<String, Object> stability = Stability(sigungu_cd, sales_divison_s_cd);
+			HashMap<String, Object> collect = Collect(sigungu_cd);
+			HashMap<String, Object> purchasing = Purchasing(sigungu_cd);
+
+			// 모든 데이터를 하나의 맵으로 합치기
+			HashMap<String, Object> allData = new HashMap<>();
+			allData.putAll(growth);
+			allData.putAll(stability);
+			allData.putAll(collect);
+			allData.putAll(purchasing);
+
+			// 테이블 생성
+			Table table = new Table(UnitValue.createPercentArray(new float[]{2, 3})).useAllAvailableWidth();
+
+			// 헤더
+			table.addHeaderCell("항목");
+			table.addHeaderCell("값");
+
+			// 필드 필터링
+			List<String> selectedFields;
+			if (fields == null || fields.isEmpty()) {
+				selectedFields = new ArrayList<>(allData.keySet());
+			} else {
+				selectedFields = fields;
+			}
+
+			// 선택된 필드만 추가
+			for (String field : selectedFields) {
+				if (allData.containsKey(field)) {
+					table.addCell(field);
+					table.addCell(String.valueOf(allData.get(field)));
+				}
+			}
+
+			document.add(table);
+
+			// 총점 계산 (선택된 필드의 숫자 값 합산)
+			double totalScore = 0.0;
+			for (String field : selectedFields) {
+				Object value = allData.get(field);
+				if (value instanceof Number) {
+					totalScore += ((Number) value).doubleValue();
+				}
+			}
+
+			// 총점 표시
+			document.add(new Paragraph("총점: " + totalScore).setTextAlignment(TextAlignment.RIGHT).setFontSize(14));
+
+			document.close();
+			return baos.toByteArray();
 		}
 	}

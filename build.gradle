@@ -36,6 +36,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
 	
+	// PDF generation
+	implementation 'com.itextpdf:itext7-core:7.2.5'
+
 }
 
 tasks.named('test') {

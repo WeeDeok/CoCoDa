@@ -2,10 +2,14 @@ package com.CoCoDa.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.CoCoDa.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/total") // 공통 경로
@@ -40,6 +44,20 @@ public class TotalController {
 		
 		return result;
 		
+	}
+
+	// PDF 보고서 다운로드
+	@GetMapping("/report/pdf")
+	public ResponseEntity<byte[]> downloadPdfReport(@RequestParam String sigungu_cd, @RequestParam String sales_divison_s_cd, @RequestParam(required = false) List<String> fields) throws Exception {
+		byte[] pdfBytes = service.generatePdfReport(sigungu_cd, sales_divison_s_cd, fields);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_PDF);
+		headers.setContentDispositionFormData("attachment", "report.pdf");
+
+		return ResponseEntity.ok()
+				.headers(headers)
+				.body(pdfBytes);
 	}
 	
 }
