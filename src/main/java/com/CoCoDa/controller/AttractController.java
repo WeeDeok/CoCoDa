@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class AttractController {
 
     @Autowired
-    private final AttractDao dao;
+    private AttractDao dao;
 
     public AttractController(AttractDao dao) {
         this.dao = dao;
