@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.CoCoDa.repository.IndexDao;
 import com.CoCoDa.util.ConvertJson;
+import com.CoCoDa.Constant.ErrorMessage;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,13 @@ public class IndexService {
 	
 	@Autowired
 	private IndexDao dao;
+	@Autowired
 	private ConvertJson convertJson;
 	
 	public JSONArray division_middle(String sales_divison_l_cd) {
-		
+		if (sales_divison_l_cd == null) {
+			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISON_L_CD_CANNOT_BE_NULL.getMessage());
+		}
 		// Base
 		List<Map<String, Object>> select_result = null;
 		
@@ -36,7 +40,9 @@ public class IndexService {
 	}
 
 	public HashMap<String, Object> divisionMap(String sales_division_s_cd) {
-
+		if (sales_division_s_cd == null) {
+			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISION_S_CD_CANNOT_BE_NULL.getMessage());
+		}
 		// Base
 		HashMap<String, Object> result = null;
 		 

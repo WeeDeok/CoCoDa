@@ -3,6 +3,7 @@ package com.CoCoDa.vo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import com.CoCoDa.Constant.ErrorMessage;
 
 @Getter
 @Setter
@@ -29,7 +30,7 @@ public class ReplyVO {
 	}
 
 	public Object getContent() {
-		throw new UnsupportedOperationException("Unimplemented method 'getContent'");
+		throw new UnsupportedOperationException(ErrorMessage.UNIMPLEMENTED_METHOD_GET_CONTENT.getMessage());
 	}
 	
 

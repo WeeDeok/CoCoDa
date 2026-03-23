@@ -18,6 +18,7 @@ import com.CoCoDa.service.BoardService;
 import com.CoCoDa.service.UserService;
 import com.CoCoDa.service.IndexService;
 import com.CoCoDa.service.TotalService;
+import com.CoCoDa.Constant.ErrorMessage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -118,7 +119,7 @@ class CoCoDaApplicationTests {
 
         userRepository.delete(found);
 
-        UserEntity foundafdel = userRepository.findById(user.getUserid()).orElseThrow(() -> new RuntimeException("User Not Found"));;
+        UserEntity foundafdel = userRepository.findById(user.getUserid()).orElseThrow(() -> new RuntimeException(ErrorMessage.USER_NOT_FOUND.getMessage()));;
 
         System.out.println("Must Not To Reach Here " + foundafdel.getUserid());
 

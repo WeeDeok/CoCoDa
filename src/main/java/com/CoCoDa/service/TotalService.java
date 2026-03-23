@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.CoCoDa.repository.TotalDao;
+import com.CoCoDa.Constant.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,9 @@ public class TotalService {
     private TotalDao dao;
 	
 		public HashMap<String, Object> SalesInfo(ArrayList<String> sigungu_arr) {
-			
+			if (sigungu_arr == null || sigungu_arr.isEmpty()) {
+				throw new IllegalArgumentException(ErrorMessage.SIGUNGU_ARR_CANNOT_BE_NULL_OR_EMPTY.getMessage());
+			}
 			HashMap<String, Object> result = new HashMap<>();
 				
 			List<Map<String, Object>> select_result = new ArrayList<>();
@@ -53,7 +56,9 @@ public class TotalService {
 		
 		// 성장성
 		public HashMap<String, Object> Growth(String sigungu_cd) {
-			
+			if (sigungu_cd == null) {
+				throw new IllegalArgumentException(ErrorMessage.SIGUNGU_CD_CANNOT_BE_NULL.getMessage());
+			}
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			double avgGrowth = 0; 	// 월 별 매출증감률
 			double salesScales = 0;	// 상권 규모
@@ -99,12 +104,15 @@ public class TotalService {
 		
 		// 안정성
 		public HashMap<String, Object> Stability(String sigungu_cd, String sales_divison_s_cd) {
+			if (sigungu_cd == null || sales_divison_s_cd == null) {
+				throw new IllegalArgumentException(ErrorMessage.SIGUNGU_CD_AND_SALES_DIVISON_S_CD_CANNOT_BE_NULL.getMessage());
+			}
 			// Base
 			HashMap<String, Object> result = new HashMap<>();
 			double variation = 0;		// 변동성
 			double operationYear = 0;	// 운영년수
 			double businessRate = 0;	// 휴 폐업률
-			
+
 			// Logic
 			// 변동성 - 월별 점포수 변동
 			ArrayList<Integer> month_store_cnt	= dao.Variation(sigungu_cd);
@@ -146,6 +154,9 @@ public class TotalService {
 		
 		//	집객력
 		public HashMap<String, Object> Collect(String sigungu_cd) {
+			if (sigungu_cd == null) {
+				throw new IllegalArgumentException(ErrorMessage.SIGUNGU_CD_CANNOT_BE_NULL.getMessage());
+			}
 			// Base
 			HashMap<String, Object> result = new HashMap<String, Object>();
 			double floatPop = 0;	// 유동인구
@@ -176,6 +187,9 @@ public class TotalService {
 
 		// 구매력
 		public HashMap<String, Object> Purchasing(String sigungu_cd) {
+			if (sigungu_cd == null) {
+				throw new IllegalArgumentException(ErrorMessage.SIGUNGU_CD_CANNOT_BE_NULL.getMessage());
+			}
 			// Base
 			HashMap<String, Object> result = new HashMap<>();
 			int cnt_price = 0;		//	건당 결제금액
