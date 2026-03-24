@@ -17,7 +17,7 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	public UserEntity userlogin(UserEntity user) {
-		if (user == null || user.getUserid() == null) {
+		if (user == null || user.getUserid() == null || user.getUserid().trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.USER_OR_USERID_CANNOT_BE_NULL.getMessage());
 		}
 		return userRepository.findById(user.getUserid()).orElseThrow(() -> new RuntimeException(ErrorMessage.USER_NOT_FOUND.getMessage()));
@@ -25,7 +25,7 @@ public class UserService {
 	}
 	
 	public UserEntity userjoin(UserEntity user) {
-		if (user == null || user.getUserid() == null) {
+		if (user == null || user.getUserid() == null || user.getUserid().trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.USER_OR_USERID_CANNOT_BE_NULL.getMessage());
 		}
 		if (userRepository.findById(user.getUserid()).isPresent()) {
@@ -39,7 +39,7 @@ public class UserService {
 	}
 	
 	public int searchUserid(String userid) {
-		if (userid == null) {
+		if (userid == null || userid.trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.USERID_CANNOT_BE_NULL.getMessage());
 		}
 		int numm = 0;

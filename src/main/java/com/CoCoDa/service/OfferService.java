@@ -15,7 +15,7 @@ public class OfferService {
     private OfferDao dao;
 
     public ArrayList<HashMap<String, Object>> offer(int sigungu_cd,String sales_divison_s_cd) {
-		if (sales_divison_s_cd == null) {
+		if (sales_divison_s_cd == null || sales_divison_s_cd.trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISON_S_CD_CANNOT_BE_NULL.getMessage());
 		}
 		ArrayList<HashMap<String, Object>> result = new ArrayList<>();
@@ -27,7 +27,7 @@ public class OfferService {
 	}
 
     public ArrayList<HashMap<String, Object>> mapsousa(int sigungu_cd, String sales_divison_s_cd) {
-		if (sales_divison_s_cd == null) {
+		if (sales_divison_s_cd == null || sales_divison_s_cd.trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISON_S_CD_CANNOT_BE_NULL.getMessage());
 		}
 		ArrayList<HashMap<String, Object>> result = new ArrayList<>();

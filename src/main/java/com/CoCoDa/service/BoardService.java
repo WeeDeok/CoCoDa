@@ -28,7 +28,7 @@ public class BoardService {
     }
 
     public Page<BoardEntity> searchBoards(String keyword, int page, int size) {
-        if (keyword == null) {
+        if (keyword == null || keyword.trim().isEmpty()) {
             keyword = "";
         }
         Pageable pageable = PageRequest.of(page, size, Sort.by("boardNum").descending());
@@ -118,7 +118,7 @@ public class BoardService {
     }
 
     public Page<BoardEntity> searchBoardsByTitle(String keyword, int page, int size) {
-        if (keyword == null) {
+        if (keyword == null || keyword.trim().isEmpty()) {
             keyword = "";
         }
         Pageable pageable = PageRequest.of(page, size, Sort.by("boardNum").descending());

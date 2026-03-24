@@ -20,7 +20,7 @@ public class IndexService {
 	private ConvertJson convertJson;
 	
 	public JSONArray division_middle(String sales_divison_l_cd) {
-		if (sales_divison_l_cd == null) {
+		if (sales_divison_l_cd == null || sales_divison_l_cd.trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISON_L_CD_CANNOT_BE_NULL.getMessage());
 		}
 		// Base
@@ -40,7 +40,7 @@ public class IndexService {
 	}
 
 	public HashMap<String, Object> divisionMap(String sales_division_s_cd) {
-		if (sales_division_s_cd == null) {
+		if (sales_division_s_cd == null || sales_division_s_cd.trim().isEmpty()) {
 			throw new IllegalArgumentException(ErrorMessage.SALES_DIVISION_S_CD_CANNOT_BE_NULL.getMessage());
 		}
 		// Base
